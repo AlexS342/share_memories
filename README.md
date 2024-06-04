@@ -17,7 +17,13 @@
 
 ### Сервер (Backend)
 
-Инструкция по разворачиванию Backend приложения будет написана немного позже.
+- `composer install`
+- `cp .env.example .env`
+- `php artisan key:generate`
+- `sudo docker compose up -d`
+- `php artisan migrate:fresh`
+- `php artisan db:seed`
+- `php artisan serve`
 
 ## Заметки по разработке проекта
 
@@ -59,4 +65,12 @@
    !!! Все необходимые библиотеки установлены по умолчанию
    !!! Все дальнейшие действия выполняются в корне или во внутренних папках проекта  
    !!! Проект доступен по ссылке http://localhost:5173/
-3. ???
+3. Создал файл `docker-compose.yml` с параметрами запуска базы данных и хранилища min.io (PostgreSQL - активно, MySQL - закомментировано, MinIO - активно)  
+   * Все параметры подключения внесены в `.env` и `.env.example`  
+   * `docker-compose.yml` скопирован в файл `docker-compose.yml.example`  
+   * Добавил в файл `.gitignore` файл `docker-compose.yml`, папки `/minio_storage` и `/data` (папки создаются при запуске файла `docker-compose.yml)
+   * Внес изменения в файл  /share_memories_laravel/config/filesystems.php
+     * 's3' => [..., 'throw' => true,],
+   * Создал тестовую страницу, тестовый контроллер, тестовый роут и проверил работу `min.io`. Тестовые файлы удалены перед выполнением коммита
+   * Проверил работу базы данных, создав подключение и накатил миграции командой `php artisan migrate:fresh`
+4. ???

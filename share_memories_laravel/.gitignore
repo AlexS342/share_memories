@@ -1,4 +1,6 @@
 /.phpunit.cache
+/data
+/minio_storage
 /node_modules
 /public/build
 /public/hot
@@ -10,6 +12,7 @@
 .env.production
 .phpactor.json
 .phpunit.result.cache
+docker-compose.yml
 Homestead.json
 Homestead.yaml
 auth.json

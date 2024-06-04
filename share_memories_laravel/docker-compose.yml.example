@@ -1,0 +1,60 @@
+# Файл запускает minio, postgres и image в Docker
+# Для запуска нужных программ закомментируйте ненужные блоки в разделе "services:"
+# Запустить исполнение файла `sudo docker compose up -d`
+# Удалить все запущенные в Docker сервисы `sudo docker compose down`
+
+version: '3.1'
+
+services:
+    #------------------------------------------------------------------------------
+    # База данных PostgreSQL (закомментировать, если ненужна)
+    #------------------------------------------------------------------------------
+    postgres:
+        restart: no #always
+        image: postgres:15.4
+        environment:
+            POSTGRES_DB: data
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: root
+        ports:
+            - '9100:5432'
+        volumes:
+            - ./data:/var/lib/postgresql/data       #куда сохранить в проекте : где в докере хранятся данные
+
+#------------------------------------------------------------------------------
+# База данных mySQL (закомментировать, если ненужна)
+#------------------------------------------------------------------------------
+#    mysql:
+#        restart: no #always
+#        image: mysql:8
+#
+#        environment:
+#            MYSQL_DATABASE: data
+#            #            MYSQL_USER: user
+#            #            MYSQL_PASSWORD: 1234
+#            MYSQL_ROOT_PASSWORD: root
+#        ports:
+#            - "9100:3306"
+#        volumes:
+#            - ./data:/var/lib/mysql/
+
+#------------------------------------------------------------------------------
+# Файловое хранилище min.io, аналог amazon S3 (закомментировать, если ненужна)
+#------------------------------------------------------------------------------
+    minio:
+        restart: no #always
+        image: minio/minio
+        ports:
+            - "9000:9000"
+            - "9001:9001"
+        volumes:
+            - ./minio_storage:/data
+        environment:
+            MINIO_ROOT_USER: admin
+            MINIO_ROOT_PASSWORD: password
+        command: server --console-address ":9001" /data
+
+#volumes:
+#    minio_storage: {}
+
+#------------------------------------------------------------------------------
