@@ -1,10 +1,11 @@
 <template>
     <form name="registration" action="#" method="post">
-        <label for="name">Имя
-            <input type="text" id="name" name="name" required>
+        <p class="inform">Поля, отмеченные "*" обязательны для заполнения!!!</p>
+        <label for="name">Имя *
+            <input type="text" id="name" name="name" v-model="name" required>
         </label>
         <label for="date">Дата рождения
-            <input type="date" id="date" name="date" required>
+            <input type="date" id="date" name="date">
         </label>
         <div class="labelWrp">
             <p>Пол</p>
@@ -17,25 +18,55 @@
                 </label>
             </div>
         </div>
-        <label for="email">Логин
-            <input type="email" id="email" name="email" required>
+        <label for="email">Логин *
+            <input type="email" id="email" name="email" v-model="login" required>
         </label>
-        <label for="password">Пароль
-            <input type="password" id="password" name="password" required>
+        <label for="password">Пароль *
+            <input type="password" id="password" name="password" v-model="password" required>
         </label>
-        <label for="repeatPassword">Пароль
-            <input type="password" id="repeatPassword" name="repeatPassword" required>
+        <label for="repeatPassword">Пароль *
+            <input type="password" id="repeatPassword" name="repeatPassword" v-model="repeatPassword" required>
         </label>
         <div class="buttons">
             <input type="button" id="back" value="Отмена">
-            <input type="button" id="checkIn" value="Войти">
+            <button type="button" id="checkIn" v-on:click="sendData">Зарегистрироваться</button>
         </div>
     </form>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-    name: "TheRegistration"
+    name: "TheRegistration",
+    data() {
+        return {
+            name:"",
+            login:"",
+            password:"",
+            repeatPassword: "",
+        }
+    },
+    methods: {
+        sendData: async function () {
+            console.log('Отправляю POST запрос на регистрацию : имя = ' + this.name + 'email = ' + this.login + ', password = ' + this.password)
+            await axios.post('/register', {
+                name: this.name,
+                email: this.login,
+                password: this.password,
+                password_confirmation: this.repeatPassword,
+            })
+                .then((response) => {
+                    console.log(response)
+                    this.$router.push({path:'/lenta'})
+                })
+                .catch((errors) => {
+                        console.log(errors)
+                    }
+                )
+        },
+    },
+
 }
 </script>
 
@@ -49,7 +80,12 @@ form {
     box-sizing: border-box;
     padding: 6px;
 }
-
+.inform{
+    color: red;
+    font-size: 12px;
+    font-weight: 300;
+    margin-bottom: 6px;
+}
 label {
     width: 100%;
     display: flex;

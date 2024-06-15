@@ -59,6 +59,18 @@
    !!! Проект доступен по ссылке http://localhost:5173/  
    !!! Vue DevTools доступен по ссылке http://localhost:5173/__devtools__/  
 3. Создаем страницы Главная, Логин, Регистрация и Первую страницу (на которую осуществляется переход после авторизации) с минимальной версткой
+4. Устанавливаем AXIOS:
+   * Команда для установки: `npm install axios`
+   * В файл main.js добавляем:
+      * import axios from "axios"; 
+      * axios.defaults.withCredentials = true; 
+      * axios.defaults.withXSRFToken = true;
+5. Авторизация и регистрация:
+   * В компоненте TheLogin.vue добавляем в created() запрос CSRF
+   * Добавляем proxy (см. файл `vite.config.js`) с правилами
+   * Добавляем POST запрос на `/login` в компоненте `TheLogin.vue`. Правильно формируем тело запроса.
+   * Так же, временно, создаем кнопку "Выход" с POST запросом на /logout в компоненте `TheLogin.vue`
+   * Добавляем POST запрос на `/register` в компоненте `TheRegistration.vue`. Правильно формируем тело запроса.
 
 ### Сервер (Laravel)
 1. `composer create-project laravel/laravel share_memories_laravel` - создание приложения в корне проекта
@@ -77,4 +89,14 @@
      * 's3' => [..., 'throw' => true,],
      * Создал тестовую страницу, тестовый контроллер, тестовый роут и проверил работу `min.io`. Тестовые файлы удалены перед выполнением коммита
    * Проверил работу базы данных, создав подключение и накатил миграции командой `php artisan migrate:fresh`
-4. ???
+4. Маршрутизация API и авторизация с регистрацией
+   * Включаем маршрутизацию API: `php artisan install:api` (устанавливается Laravel Sanctum, появляется routes/api.php)
+   * Устанавливаем  Fortify: `composer require laravel/fortify`
+   * Публикуем ресурсы Fortify: `php artisan fortify:install`
+   * Обновляем таблицы базы данных (предварительно запустив их в докере): `php artisan migrate`, незабываем про сиды
+   * В файле `/config/fortify.php`:
+     * 'features' => \[Features::registration(), Features::resetPasswords(), Features::emailVerification(), \], <- остальные службы закомментировал
+     * 'views' => false, <- отключил маршруты на страницы авторизации, регистрации и т. п.
+     * !!! если будет нужно реализовать сброс пароля, следует определить маршрут с именем password.reset
+   * GET запрос на адрес 127.0.0.1:8000/sanctum/csrf-cookie в ответе возвращает токен и сессию
+   * Маршруты и логика авторизации и регистрации готовы к использованию.
