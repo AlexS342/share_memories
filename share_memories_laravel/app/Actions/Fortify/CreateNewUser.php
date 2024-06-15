@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Enum\GenderEnum;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -28,11 +29,15 @@ class CreateNewUser implements CreatesNewUsers
                 'max:255',
                 Rule::unique(User::class),
             ],
+            'birth_date' => ['nullable','integer', 'min:-1451707200'],
+            'gender' => ['nullable', Rule::enum(GenderEnum::class)],
             'password' => $this->passwordRules(),
         ])->validate();
 
         return User::create([
             'name' => $input['name'],
+            'birth_date' => $input['birth_date'],
+            'gender' => $input['gender'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);

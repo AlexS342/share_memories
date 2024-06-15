@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 123,
+            'created_at' => 0 + now()->format('U'),
+            'updated_at' => 0 + now()->format('U'),
         ]);
     }
 }

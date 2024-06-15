@@ -2,11 +2,11 @@
     <form class="form" name="login">
         <div class="formItem">
             <label for="username">Логин</label>
-            <input type="email" id="username" name="username" v-model="login" required>
+            <input type="email" id="username" name="username" v-model="login">
         </div>
         <div class="formItem">
             <label for="password">Пароль</label>
-            <input type="password" id="password" name="password" v-model="password" required>
+            <input type="password" id="password" name="password" v-model="password">
         </div>
         <div class="formButton">
             <button type="button" id="back">Отмена</button>
@@ -41,7 +41,6 @@ export default {
     },
     methods: {
         sendData: async function () {
-            console.log('Отправляю POST запрос: email = ' + this.login + ', password = ' + this.password)
             await axios.post('/login', {
                     email: this.login,
                     password: this.password,

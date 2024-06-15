@@ -11,6 +11,12 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    protected $dateFormat = 'U';
+
+    protected $attributes = [
+        'deleted_at' => null,
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -18,6 +24,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'birth_date',
+        'gender',
         'email',
         'password',
     ];
