@@ -1,3 +1,8 @@
+<script setup>
+import {useUserStore} from "@/stores/user.js";
+const userStore = useUserStore()
+</script>
+
 <template>
     <form class="form" name="login">
         <div class="formItem">
@@ -10,21 +15,20 @@
         </div>
         <div class="formButton">
             <button type="button" id="back">Отмена</button>
-            <button type="button" id="checkIn" v-on:click="sendData">Войти</button>
+            <button type="button" id="checkIn" v-on:click="sendData(userStore)">Войти</button>
         </div>
     </form>
-    <button type="button" v-on:click="logout">выйти</button>
+    <button type="button" v-on:click="logout(userStore)">выйти</button>
 </template>
 
 <script>
 import axios from "axios";
-
 export default {
     name: "TheLogin",
     data() {
         return {
-            login:"",
-            password:"",
+            login: "",
+            password: "",
         }
     },
     created() {
@@ -40,26 +44,30 @@ export default {
             })
     },
     methods: {
-        sendData: async function () {
+        sendData: async function (store) {
             await axios.post('/login', {
-                    email: this.login,
-                    password: this.password,
-                })
+                email: this.login,
+                password: this.password,
+            })
                 .then((response) => {
-                    console.log(response)
-                    this.$router.push({path:'/lenta'})
+                    console.log(response.status)
+                    store.setAuth(true)
+                    // localStorage.setItem('auth', "true")
+                    this.$router.push({path: '/lenta'})
                 })
                 .catch((errors) => {
-                    console.log(errors)
-                }
-            )
+                        console.log(errors)
+                    }
+                )
         },
-        logout: async function () {
+        logout: async function (store) {
             console.log('Отправляю POST запрос на LOGOUT')
             await axios.post('/logout')
                 .then((response) => {
                     console.log(response)
-                    this.$router.push({path:'/'})
+                    store.setAuth(false)
+                    // localStorage.setItem('auth', "false")
+                    this.$router.push({path: '/'})
                 })
                 .catch((errors) => {
                         console.log(errors)

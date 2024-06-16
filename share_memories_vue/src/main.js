@@ -12,8 +12,12 @@ axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true;
 
 const app = createApp(App)
+const pinia = createPinia()
 
-app.use(createPinia())
+
 app.use(router)
+app.use(pinia)
 
 app.mount('#app')
+
+// createApp(App).use(createPinia()).use(router).mount('#app')

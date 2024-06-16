@@ -1,13 +1,15 @@
 <script setup>
 import {RouterLink} from 'vue-router'
+import {useUserStore} from "@/stores/user.js";
+const userStore = useUserStore()
 </script>
 
 <template>
     <nav>
         <ol>
             <li><RouterLink to="/">Главная</RouterLink></li>
-            <li><RouterLink to="/login">Вход</RouterLink></li>
-            <li><RouterLink to="/lenta">Лента</RouterLink></li>
+<!--            <li><RouterLink to="/login">Вход</RouterLink></li>-->
+            <li v-if="userStore.auth"><RouterLink to="/lenta">Лента</RouterLink></li>
         </ol>
     </nav>
 </template>

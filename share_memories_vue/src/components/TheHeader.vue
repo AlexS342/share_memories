@@ -1,3 +1,9 @@
+<script setup>
+import {RouterLink} from 'vue-router'
+import {useUserStore} from "@/stores/user.js";
+const userStore = useUserStore()
+</script>
+
 <template>
     <header>
         <div class="logoWRP">
@@ -10,12 +16,46 @@
                 разместить анонсы развития приложения или даже рекламу.</p>
             <p class="infoText">Но если лень, то можно ничего не размещать.</p>
         </div>
+        <div class="user">
+            <div v-if="userStore.auth" class="userTrue">
+                <p>вы авторизованы</p>
+                <a href="#" v-on:click="logout(userStore)">выйти</a>
+            </div>
+            <div v-else class="userFalse">
+                <p>вы не авторизованы</p>
+                <RouterLink to="/login">Войти</RouterLink>
+            </div>
+        </div>
     </header>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-    name: "MainHeader"
+    name: "MainHeader",
+    data() {
+        return {
+            // login: "",
+            // password: "",
+        }
+    },
+    methods: {
+        logout: async function (store) {
+            console.log('Отправляю POST запрос на LOGOUT')
+            await axios.post('/logout')
+                .then((response) => {
+                    console.log(response)
+                    store.setAuth(false)
+                    // localStorage.setItem('auth', "false")
+                    this.$router.push({path: '/'})
+                })
+                .catch((errors) => {
+                        console.log(errors)
+                    }
+                )
+        }
+    }
 }
 </script>
 
