@@ -1,5 +1,32 @@
 <script setup>
-import {RouterView} from 'vue-router'
+import {RouterView} from 'vue-router';
+import {useUserStore} from "@/stores/user.js";
+import axios from "axios";
+
+const userStore = useUserStore();
+
+if (localStorage.getItem('isAuth') === 'true') {
+    userStore.setAuth(true);
+    getDataUser();
+} else {
+    userStore.setAuth(false);
+}
+
+async function getDataUser() {
+    await axios.get('/api/user')
+        .then((response) => {
+            console.log('APP.JS GET USER OK =>' + response.data.name);
+            userStore.setUser(response.data);
+        })
+        .catch((error) => {
+            console.log('APP.JS GET USER ERROR => ' + error.message);
+            if(error.response.status === 401 || error.response.status === 419 || error.response.status === 422){
+                userStore.setAuth(false);
+                localStorage.setItem('isAuth', 'false')
+                this.$router.push({path: '/login'})
+            }
+        });
+}
 </script>
 
 <template>

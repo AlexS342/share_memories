@@ -18,7 +18,6 @@ const userStore = useUserStore()
             <button type="button" id="checkIn" v-on:click="sendData(userStore)">Войти</button>
         </div>
     </form>
-    <button type="button" v-on:click="logout(userStore)">выйти</button>
 </template>
 
 <script>
@@ -37,10 +36,10 @@ export default {
          */
         axios.get('/sanctum/csrf-cookie')
             .then((response) => {
-                console.log(response);
+                console.log('CSRF OK => ' + response.status);
             })
             .catch((error) => {
-                console.log(error);
+                console.log('CSRF ERROR => ' + error.message);
             })
     },
     methods: {
@@ -50,29 +49,34 @@ export default {
                 password: this.password,
             })
                 .then((response) => {
-                    console.log(response.status)
+                    console.log('TheLogin sendData OK => ' + response.status)
+                    this.getUser(store)
                     store.setAuth(true)
-                    // localStorage.setItem('auth', "true")
                     this.$router.push({path: '/lenta'})
                 })
-                .catch((errors) => {
-                        console.log(errors)
-                    }
-                )
-        },
-        logout: async function (store) {
-            console.log('Отправляю POST запрос на LOGOUT')
-            await axios.post('/logout')
-                .then((response) => {
-                    console.log(response)
-                    store.setAuth(false)
-                    // localStorage.setItem('auth', "false")
-                    this.$router.push({path: '/'})
+                .catch((error) => {
+                    console.log('TheLogin sendData ERROR => ' + error.message)
+                    this.actionErr(store, error)
                 })
-                .catch((errors) => {
-                        console.log(errors)
-                    }
-                )
+        },
+        getUser: async function (store) {
+            await axios.get('/api/user')
+                .then((response) => {
+                    console.log('TheLogin getUser OK => ' + response.data.name)
+                    store.setUser(response.data)
+                })
+                .catch((error) => {
+                    console.log('TheLogin getUser ERROR => ' + error.message)
+                    console.log(error.message)
+                    this.actionErr(store, error)
+                })
+        },
+        actionErr: function (store, error) {
+            if(error.response.status === 401 || error.response.status === 419 || error.response.status === 422){
+                store.setAuth(false);
+                localStorage.setItem('isAuth', 'false')
+                this.$router.push({path: '/login'})
+            }
         }
     }
 }

@@ -17,13 +17,13 @@ const userStore = useUserStore()
             <p class="infoText">Но если лень, то можно ничего не размещать.</p>
         </div>
         <div class="user">
-            <div v-if="userStore.auth" class="userTrue">
-                <p>вы авторизованы</p>
+            <div v-if="userStore.getAuth" class="userTrue">
+                <p>{{ userStore.user.name }}</p>
                 <a href="#" v-on:click="logout(userStore)">выйти</a>
             </div>
             <div v-else class="userFalse">
                 <p>вы не авторизованы</p>
-                <RouterLink to="/login">Войти</RouterLink>
+                <RouterLink to="/login">войти</RouterLink>
             </div>
         </div>
     </header>
@@ -34,26 +34,20 @@ import axios from "axios";
 
 export default {
     name: "MainHeader",
-    data() {
-        return {
-            // login: "",
-            // password: "",
-        }
-    },
+    // data() {
+    //     return {}
+    // },
     methods: {
         logout: async function (store) {
-            console.log('Отправляю POST запрос на LOGOUT')
             await axios.post('/logout')
                 .then((response) => {
-                    console.log(response)
+                    console.log('LOGOUT OK => ' + response.status)
                     store.setAuth(false)
-                    // localStorage.setItem('auth', "false")
                     this.$router.push({path: '/'})
                 })
-                .catch((errors) => {
-                        console.log(errors)
-                    }
-                )
+                .catch((error) => {
+                    console.log('LOGOUT ERROR => ' + error.message)
+                })
         }
     }
 }

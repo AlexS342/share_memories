@@ -2,24 +2,24 @@ import {defineStore} from 'pinia'
 
 export const useUserStore = defineStore('userStore', {
     state: () => ({
-        auth: false,
-        user: [],
+        isAuth: false,
+        user: {},
     }),
     getters: {
-        // getAuth() {
-        //     return this.auth
-        // },
+        getAuth() {
+            return this.isAuth
+        },
+        getUser() {
+            return this.user
+        }
     },
     actions: {
-        setAuth(bl) {
-            this.auth = bl
+        setAuth(bool) {
+            this.isAuth = bool
+            localStorage.setItem('isAuth', bool)
+        },
+        setUser(user) {
+            this.user = user
         },
     }
-    // const count = ref(0)
-    // const doubleCount = computed(() => count.value * 2)
-    // function increment() {
-    //     count.value++
-
-
-    // return { count, doubleCount, increment }
 })

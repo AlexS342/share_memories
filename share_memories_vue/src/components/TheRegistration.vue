@@ -1,3 +1,8 @@
+<script setup>
+import {useUserStore} from "@/stores/user.js";
+const userStore = useUserStore()
+</script>
+
 <template>
     <form name="registration" action="#" method="post">
         <p class="inform">Поля, отмеченные "*" обязательны для заполнения!!!</p>
@@ -29,7 +34,7 @@
         </label>
         <div class="buttons">
             <input type="button" id="back" value="Отмена">
-            <button type="button" id="checkIn" v-on:click="sendData">Зарегистрироваться</button>
+            <button type="button" id="checkIn" v-on:click="sendData(userStore)">Зарегистрироваться</button>
 
         </div>
     </form>
@@ -42,7 +47,7 @@ export default {
     name: "TheRegistration",
     data() {
         return {
-            name:"Вася",
+            name:"",
             birth_date: null,
             gender: "",
             login:"",
@@ -52,29 +57,49 @@ export default {
     },
     // created() {},
     methods: {
-        sendData: async function () {
+        sendData: async function (store) {
             await axios.post('/register', {
                 name: this.name,
                 email: this.login,
-                birth_date: this.getBirthDate(),
+                birth_date: this.getBirthDateUnix(),
                 gender: this.gender,
                 password: this.password,
                 password_confirmation: this.repeatPassword,
             })
                 .then((response) => {
-                    console.log(response)
+                    console.log('TheRegistration sendData OK => ' + response.status)
+                    this.getUser(store)
+                    store.setAuth(true)
                     this.$router.push({path:'/lenta'})
                 })
-                .catch((errors) => {
-                        console.log(errors)
-                    }
-                )
+                .catch((error) => {
+                    console.log('TheRegistration sendData ERROR' + error.message)
+                    this.actionErr(store, error)
+                })
         },
-        getBirthDate: function (){
+        getBirthDateUnix: function (){
             if(this.birth_date !== null){
                 return new Date(this.birth_date).getTime() / 1000
             }else{
                 return null
+            }
+        },
+        getUser: async function (store) {
+            await axios.get('/api/user')
+                .then((response) => {
+                    console.log('TheRegistration getUser ERROR' + response.data.name)
+                    store.setUser(response.data)
+                })
+                .catch((error) => {
+                    console.log('TheRegistration getUser ERROR' + error.message)
+                    this.actionErr(store, error)
+                })
+        },
+        actionErr: function (store, error) {
+            if(error.response.status === 401 || error.response.status === 419 || error.response.status === 422){
+                store.setAuth(false);
+                localStorage.setItem('isAuth', 'false')
+                this.$router.push({path: '/login'})
             }
         }
     },
