@@ -12,14 +12,12 @@ const userStore = useUserStore()
     <main class="main">
         <h1>Лента</h1>
         <p>Здесь будут отображаться новые файлы других пользователей и попасть сюда можно будет только после авторизации</p>
-        <p v-if="userStore.auth">Вы авторизированны</p>
+        <p v-if="userStore.getAuth">Вы авторизированны</p>
         <p v-else>Вы не авторизированны</p>
     </main>
 </template>
 
 <script>
-// import {useUserStore} from "@/stores/user.js"
-// const userStore = useUserStore()
 
 export default {
     name: "LentaView",

@@ -3,6 +3,11 @@ import MainView from '../views/MainView.vue';
 import LoginView from '../views/LoginView.vue';
 import LentaView from '../views/LentaView.vue';
 
+import FilesView from '../views/FilesView.vue';
+import PeopleView from '../views/PeopleView.vue';
+import AnalysisView from '../views/AnalysisView.vue';
+import ProfileView from '../views/ProfileView.vue';
+
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -12,7 +17,7 @@ const router = createRouter({
             component: MainView
         },
         {
-            path: '/login',
+            path: '/the_login',
             name: 'login',
             component: LoginView
         },
@@ -20,6 +25,26 @@ const router = createRouter({
             path: '/lenta',
             name: 'lenta',
             component: LentaView
+        },
+        {
+            path: '/files',
+            name: 'files',
+            component: FilesView
+        },
+        {
+            path: '/people',
+            name: 'peopl',
+            component: PeopleView
+        },
+        {
+            path: '/analysis',
+            name: 'analysis',
+            component: AnalysisView
+        },
+        {
+            path: '/profile',
+            name: 'profile',
+            component: ProfileView
         },
     ]
 })

@@ -18,12 +18,12 @@ const userStore = useUserStore()
         </div>
         <div class="user">
             <div v-if="userStore.getAuth" class="userTrue">
-                <p>{{ userStore.user.name }}</p>
+                <router-link to="/profile">{{ userStore.user.name }}</router-link><br/>
                 <a href="#" v-on:click="logout(userStore)">выйти</a>
             </div>
             <div v-else class="userFalse">
                 <p>вы не авторизованы</p>
-                <RouterLink to="/login">войти</RouterLink>
+                <RouterLink to="/the_login">войти</RouterLink>
             </div>
         </div>
     </header>

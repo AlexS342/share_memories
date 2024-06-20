@@ -44,7 +44,7 @@ const userStore = useUserStore()
 import axios from "axios";
 
 export default {
-    name: "TheRegistration",
+    name: "FormRegistration",
     data() {
         return {
             name:"",

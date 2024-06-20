@@ -1,8 +1,8 @@
 <script setup>
 import MainHeader from '../components/TheHeader.vue'
 import MainMenu from '../components/TheMenu.vue'
-import TheLogin from '../components/TheLogin.vue'
-import TheRegistration from '../components/TheRegistration.vue'
+import FormLogin from '../components/FormLogin.vue'
+import FormRegistration from '../components/FormRegistration.vue'
 </script>
 <template>
     <MainHeader />
@@ -20,12 +20,12 @@ import TheRegistration from '../components/TheRegistration.vue'
             <div v-if="login" class="form">
                 <h1>Вход</h1>
                 <p>Форма для авторизации</p>
-                <TheLogin />
+                <FormLogin />
             </div>
             <div v-else class="form">
                 <h1>Регистрация</h1>
                 <p>Форма для регистрации</p>
-                <TheRegistration />
+                <FormRegistration />
             </div>
         </div>
 

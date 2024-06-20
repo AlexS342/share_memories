@@ -8,8 +8,10 @@ const userStore = useUserStore()
     <nav>
         <ol>
             <li><RouterLink to="/">Главная</RouterLink></li>
-<!--            <li><RouterLink to="/login">Вход</RouterLink></li>-->
-            <li v-if="userStore.auth"><RouterLink to="/lenta">Лента</RouterLink></li>
+            <li v-if="userStore.getAuth"><RouterLink to="/lenta">Лента</RouterLink></li>
+            <li v-if="userStore.getAuth"><RouterLink to="/files">Мои файлы</RouterLink></li>
+            <li v-if="userStore.getAuth"><RouterLink to="/people">Люди</RouterLink></li>
+            <li v-if="userStore.getAuth"><RouterLink to="/analysis">Анализ</RouterLink></li>
         </ol>
     </nav>
 </template>
