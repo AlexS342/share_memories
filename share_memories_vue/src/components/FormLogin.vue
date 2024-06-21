@@ -37,9 +37,13 @@ export default {
         axios.get('/sanctum/csrf-cookie')
             .then((response) => {
                 console.log('CSRF OK => ' + response.status);
+
+                //TODO реализовать сообщение об упешном входе
             })
             .catch((error) => {
                 console.log('CSRF ERROR => ' + error.message);
+
+                //TODO реализовать сообщение с ошибками
             })
     },
     methods: {
@@ -72,7 +76,7 @@ export default {
                 })
         },
         actionErr: function (store, error) {
-            if(error.response.status === 401 || error.response.status === 419 || error.response.status === 422){
+            if(error.response.status === 401 || error.response.status === 419){
                 store.setAuth(false);
                 localStorage.setItem('isAuth', 'false')
                 this.$router.push({path: '/login'})

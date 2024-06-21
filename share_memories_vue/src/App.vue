@@ -1,15 +1,28 @@
 <script setup>
 import {RouterView} from 'vue-router';
 import {useUserStore} from "@/stores/user.js";
+import {useErrorsStore} from "@/stores/errors.js";
+import {useMessagesStore} from "@/stores/messages.js";
+
 import axios from "axios";
 
 const userStore = useUserStore();
+const errorsStore = useErrorsStore();
+const messagesStore = useMessagesStore();
 
 if (localStorage.getItem('isAuth') === 'true') {
     userStore.setAuth(true);
     getDataUser();
 } else {
     userStore.setAuth(false);
+}
+
+if(localStorage.getItem('errorsStatus') === 'true'){
+    errorsStore.setFromLocalStorage();
+}
+
+if(localStorage.getItem('messageStatus') === 'true'){
+    messagesStore.setFromLocalStorage();
 }
 
 async function getDataUser() {
@@ -20,20 +33,51 @@ async function getDataUser() {
         })
         .catch((error) => {
             console.log('APP.JS GET USER ERROR => ' + error.message);
-            if(error.response.status === 401 || error.response.status === 419 || error.response.status === 422){
+            if(error.response.status === 401 || error.response.status === 419){
                 userStore.setAuth(false);
                 localStorage.setItem('isAuth', 'false')
                 this.$router.push({path: '/login'})
             }
         });
 }
+
+function getStatusErr() {
+    return errorsStore.getStatus
+}
+
+function getStatusMessages() {
+    return messagesStore.getStatus
+}
+
+function clearErrors () {
+    errorsStore.clearErrors()
+    localStorage.setItem('errorsStatus', 'false')
+    localStorage.setItem('errorsCode', '0')
+    localStorage.setItem('errorsArray', '[]')
+}
+
+function clearMessages () {
+    messagesStore.clearMessages()
+    localStorage.setItem('messagesStatus', 'false')
+    localStorage.setItem('messagesArray', '[]')
+}
 </script>
 
 <template>
+    <div v-if="getStatusErr()" style="width: 100%; display: flex; flex-direction: column; align-items: center; background: rgba(255,140,140,0.78); box-sizing: border-box; padding: 12px 24px">
+        <p v-for="(item, index) in errorsStore.getErrors" :key="index" style="color: red; margin-bottom: 12px">{{item}}</p>
+        <input type="button" value="OK" v-on:click="clearErrors">
+    </div>
+    <div v-if="getStatusMessages()" style="width: 100%; display: flex; flex-direction: column; align-items: center; background: rgba(175, 255, 95, 0.75);; box-sizing: border-box; padding: 12px 24px">
+        <p v-for="(item, index) in messagesStore.getMessages" :key="index" style="color: rgb(0 42 105);; margin-bottom: 12px">{{item}}</p>
+        <input type="button" value="OK" v-on:click="clearMessages">
+    </div>
     <RouterView/>
 </template>
 
 <script>
+
+
 
 </script>
 

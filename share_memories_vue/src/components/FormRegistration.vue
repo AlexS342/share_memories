@@ -70,11 +70,15 @@ export default {
                     console.log('TheRegistration sendData OK => ' + response.status)
                     this.getUser(store)
                     store.setAuth(true)
+                    //TODO реализовать сообщение об упешном входе
+
                     this.$router.push({path:'/lenta'})
                 })
                 .catch((error) => {
                     console.log('TheRegistration sendData ERROR' + error.message)
                     this.actionErr(store, error)
+
+                    //TODO реализовать сообщение с ошибками
                 })
         },
         getBirthDateUnix: function (){
@@ -96,7 +100,7 @@ export default {
                 })
         },
         actionErr: function (store, error) {
-            if(error.response.status === 401 || error.response.status === 419 || error.response.status === 422){
+            if(error.response.status === 401 || error.response.status === 419){
                 store.setAuth(false);
                 localStorage.setItem('isAuth', 'false')
                 this.$router.push({path: '/login'})

@@ -17,13 +17,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->bigInteger('birth_date')->nullable()->comment('дата рождения пользователя');
-//            $table->string('gender')->nullable()->comment('Гендер пользователя');
             $table->enum('gender', GenderEnum::getEnums())->nullable()->comment('Гендер пользователя');
-//            $table->timestamp('email_verified_at')->nullable();
             $table->bigInteger('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-//            $table->timestamps();
             $table->bigInteger('created_at')->comment('дата создания аккаунта');
             $table->bigInteger('updated_at')->comment('дата последних изменений');
             $table->bigInteger('deleted_at')->nullable()->default(null)->comment('Дата удаления аккаунта');

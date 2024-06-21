@@ -1,7 +1,7 @@
 <template>
     <form>
         <label for="album">Выберите альбом</label>
-        <select>
+        <select id="album" name="album">
             <option value="1">Лето 2018</option>
             <option value="2">Выпускной</option>
             <option value="3">Юбилей Вити</option>
@@ -33,7 +33,7 @@
             <input type="radio" id="rights5" name="rights" value="private">
         </label><br/>
         <label for="description">Описание</label>
-        <textarea id="rights5" name="rights1" cols="30" rows="4"></textarea>
+        <textarea id="description" name="description" cols="30" rows="4"></textarea>
         <button>Загрузить</button>
     </form>
 </template>

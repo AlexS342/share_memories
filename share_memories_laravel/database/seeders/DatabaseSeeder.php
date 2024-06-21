@@ -24,18 +24,22 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory()->create([
-            'name' => 'Test User',
+            'name' => 'Test User1',
             'email' => 'test1@example.com',
             'password' => 123,
             'created_at' => now()->format('U'),
             'updated_at' => now()->format('U'),
         ]);
         User::factory()->create([
-            'name' => 'Test User',
+            'name' => 'Test User2',
             'email' => 'test2@example.com',
             'password' => 123,
             'created_at' => now()->format('U'),
             'updated_at' => now()->format('U'),
+        ]);
+
+        $this->call([
+            AlbumSeeder::class,
         ]);
     }
 }
