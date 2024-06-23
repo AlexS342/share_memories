@@ -1,8 +1,3 @@
-<script setup>
-import {useUserStore} from "@/stores/user.js";
-const userStore = useUserStore()
-</script>
-
 <template>
     <form class="form" name="login">
         <div class="formItem">
@@ -15,15 +10,21 @@ const userStore = useUserStore()
         </div>
         <div class="formButton">
             <button type="button" id="back">Отмена</button>
-            <button type="button" id="checkIn" v-on:click="sendData(userStore)">Войти</button>
+            <button type="button" id="checkIn" v-on:click="sendData()">Войти</button>
         </div>
     </form>
 </template>
 
 <script>
 import axios from "axios";
+import {useUserStore} from "@/stores/user.js";
 export default {
     name: "FormLogin",
+
+    setup() {
+        const userStore = useUserStore()
+        return {userStore}
+    },
     data() {
         return {
             login: "",
@@ -47,37 +48,37 @@ export default {
             })
     },
     methods: {
-        sendData: async function (store) {
+        sendData: async function () {
             await axios.post('/login', {
                 email: this.login,
                 password: this.password,
             })
                 .then((response) => {
                     console.log('TheLogin sendData OK => ' + response.status)
-                    this.getUser(store)
-                    store.setAuth(true)
+                    this.getUser()
+                    this.userStore.setAuth(true)
                     this.$router.push({path: '/lenta'})
                 })
                 .catch((error) => {
                     console.log('TheLogin sendData ERROR => ' + error.message)
-                    this.actionErr(store, error)
+                    this.actionErr(error)
                 })
         },
-        getUser: async function (store) {
+        getUser: async function () {
             await axios.get('/api/user')
                 .then((response) => {
                     console.log('TheLogin getUser OK => ' + response.data.name)
-                    store.setUser(response.data)
+                    this.userStore.setUser(response.data)
                 })
                 .catch((error) => {
                     console.log('TheLogin getUser ERROR => ' + error.message)
                     console.log(error.message)
-                    this.actionErr(store, error)
+                    this.actionErr(error)
                 })
         },
-        actionErr: function (store, error) {
+        actionErr: function (error) {
             if(error.response.status === 401 || error.response.status === 419){
-                store.setAuth(false);
+                this.userStore.setAuth(false);
                 localStorage.setItem('isAuth', 'false')
                 this.$router.push({path: '/login'})
             }

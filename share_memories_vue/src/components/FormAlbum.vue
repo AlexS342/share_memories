@@ -1,10 +1,3 @@
-<script setup>
-import {useErrorsStore} from "@/stores/errors.js"
-const errorsStore = useErrorsStore()
-import {useMessagesStore} from "@/stores/messages.js"
-const messagesStore = useMessagesStore()
-</script>
-
 <template>
     <form name="album">
         <label for="name">Название альбома</label>
@@ -36,14 +29,25 @@ const messagesStore = useMessagesStore()
         </label><br/>
         <label for="description">Описание</label>
         <textarea id="description" name="description" cols="30" rows="4" v-model="description"></textarea>
-        <input type="button" value="Создать" v-on:click="creat(errorsStore, messagesStore)">
+        <input type="button" value="Создать" v-on:click="creat()">
     </form>
 </template>
 
 <script>
 import axios from "axios";
+import {useErrorsStore} from "@/stores/errors.js"
+import {useMessagesStore} from "@/stores/messages.js"
+import {useUserStore} from "@/stores/user.js"
 export default {
     name: "FormAlbum",
+
+    setup() {
+        const errorsStore = useErrorsStore()
+        const messagesStore = useMessagesStore()
+        const userStore = useUserStore()
+
+        return {errorsStore, userStore, messagesStore}
+    },
     data() {
         return {
             'name': '',
@@ -53,7 +57,7 @@ export default {
     },
     // created() {},
     methods: {
-        creat: function (errorsStore, messagesStore){
+        creat: function (){
             axios.post('/api/albums/create', {
                 name: this.name,
                 rights: this.rights,
@@ -64,7 +68,8 @@ export default {
                     this.rights = ''
                     this.description = ''
 
-                    messagesStore.setData(response.data.message)
+                    this.messagesStore.setData(response.data.message);
+                    this.userStore.iterationCountAlbum()
 
                     let strMessages = JSON.stringify(response.data.message)
                     localStorage.setItem('messagesStatus', 'true')
@@ -80,7 +85,7 @@ export default {
                     }
 
                     let data = {'code': errors.response.status, errors: arrErr}
-                    errorsStore.setData(data)
+                    this.errorsStore.setData(data)
 
                     let strErrors = JSON.stringify(data.errors)
                     localStorage.setItem('errorsStatus', 'true')

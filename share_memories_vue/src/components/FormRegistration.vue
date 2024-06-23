@@ -1,8 +1,3 @@
-<script setup>
-import {useUserStore} from "@/stores/user.js";
-const userStore = useUserStore()
-</script>
-
 <template>
     <form name="registration" action="#" method="post">
         <p class="inform">Поля, отмеченные "*" обязательны для заполнения!!!</p>
@@ -34,7 +29,7 @@ const userStore = useUserStore()
         </label>
         <div class="buttons">
             <input type="button" id="back" value="Отмена">
-            <button type="button" id="checkIn" v-on:click="sendData(userStore)">Зарегистрироваться</button>
+            <button type="button" id="checkIn" v-on:click="sendData()">Зарегистрироваться</button>
 
         </div>
     </form>
@@ -42,9 +37,13 @@ const userStore = useUserStore()
 
 <script>
 import axios from "axios";
-
+import {useUserStore} from "@/stores/user.js";
 export default {
     name: "FormRegistration",
+    setup() {
+        const userStore = useUserStore()
+        return {userStore}
+    },
     data() {
         return {
             name:"",
@@ -57,7 +56,7 @@ export default {
     },
     // created() {},
     methods: {
-        sendData: async function (store) {
+        sendData: async function () {
             await axios.post('/register', {
                 name: this.name,
                 email: this.login,
@@ -68,15 +67,15 @@ export default {
             })
                 .then((response) => {
                     console.log('TheRegistration sendData OK => ' + response.status)
-                    this.getUser(store)
-                    store.setAuth(true)
+                    this.getUser()
+                    this.userStore.setAuth(true)
                     //TODO реализовать сообщение об упешном входе
 
                     this.$router.push({path:'/lenta'})
                 })
                 .catch((error) => {
                     console.log('TheRegistration sendData ERROR' + error.message)
-                    this.actionErr(store, error)
+                    this.actionErr(error)
 
                     //TODO реализовать сообщение с ошибками
                 })
@@ -88,20 +87,20 @@ export default {
                 return null
             }
         },
-        getUser: async function (store) {
+        getUser: async function () {
             await axios.get('/api/user')
                 .then((response) => {
                     console.log('TheRegistration getUser ERROR' + response.data.name)
-                    store.setUser(response.data)
+                    this.userStore.setUser(response.data)
                 })
                 .catch((error) => {
                     console.log('TheRegistration getUser ERROR' + error.message)
-                    this.actionErr(store, error)
+                    this.actionErr(error)
                 })
         },
-        actionErr: function (store, error) {
+        actionErr: function (error) {
             if(error.response.status === 401 || error.response.status === 419){
-                store.setAuth(false);
+                this.userStore.setAuth(false);
                 localStorage.setItem('isAuth', 'false')
                 this.$router.push({path: '/login'})
             }

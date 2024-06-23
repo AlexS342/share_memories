@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enum\RightsEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,7 +24,7 @@ class AlbumFactory extends Factory
             'cover' => null,
             'name' => fake()->text(10),
             'description' => fake()->text(50),
-            'rights' => 'Только мне',
+            'rights' => RightsEnum::ME->value,
             'created_at' => now()->format('U'),
             'updated_at' => now()->format('U'),
             'deleted_at' => null,

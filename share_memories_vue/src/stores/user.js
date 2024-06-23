@@ -4,6 +4,7 @@ export const useUserStore = defineStore('userStore', {
     state: () => ({
         isAuth: false,
         user: {},
+        countAlbums: 0,
     }),
     getters: {
         getAuth() {
@@ -11,6 +12,9 @@ export const useUserStore = defineStore('userStore', {
         },
         getUser() {
             return this.user
+        },
+        getCountAlbums() {
+            return this.countAlbums
         }
     },
     actions: {
@@ -21,5 +25,11 @@ export const useUserStore = defineStore('userStore', {
         setUser(user) {
             this.user = user
         },
+        setCountAlbums(data) {
+            this.countAlbums = data
+        },
+        iterationCountAlbum() {
+            this.countAlbums++
+        }
     }
 })
