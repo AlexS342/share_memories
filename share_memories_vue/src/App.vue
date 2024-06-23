@@ -1,10 +1,9 @@
 <script setup>
 import {RouterView} from 'vue-router';
+import axios from "axios";
 import {useUserStore} from "@/stores/user.js";
 import {useErrorsStore} from "@/stores/errors.js";
 import {useMessagesStore} from "@/stores/messages.js";
-
-import axios from "axios";
 
 const userStore = useUserStore();
 const errorsStore = useErrorsStore();
@@ -16,15 +15,6 @@ if (localStorage.getItem('isAuth') === 'true') {
 } else {
     userStore.setAuth(false);
 }
-
-if(localStorage.getItem('errorsStatus') === 'true'){
-    errorsStore.setFromLocalStorage();
-}
-
-if(localStorage.getItem('messageStatus') === 'true'){
-    messagesStore.setFromLocalStorage();
-}
-
 async function getDataUser() {
     await axios.get('/api/user')
         .then((response) => {
@@ -41,14 +31,12 @@ async function getDataUser() {
         });
 }
 
+if(localStorage.getItem('errorsStatus') === 'true'){
+    errorsStore.setFromLocalStorage();
+}
 function getStatusErr() {
     return errorsStore.getStatus
 }
-
-function getStatusMessages() {
-    return messagesStore.getStatus
-}
-
 function clearErrors () {
     errorsStore.clearErrors()
     localStorage.setItem('errorsStatus', 'false')
@@ -56,11 +44,18 @@ function clearErrors () {
     localStorage.setItem('errorsArray', '[]')
 }
 
+if(localStorage.getItem('messagesStatus') === 'true'){
+    messagesStore.setFromLocalStorage();
+}
+function getStatusMessages() {
+    return messagesStore.getStatus
+}
 function clearMessages () {
     messagesStore.clearMessages()
     localStorage.setItem('messagesStatus', 'false')
     localStorage.setItem('messagesArray', '[]')
 }
+
 </script>
 
 <template>

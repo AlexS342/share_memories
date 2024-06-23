@@ -30,7 +30,7 @@ export const useMessagesStore = defineStore('messagesStore', {
         },
         setFromLocalStorage() {
             this.status = localStorage.getItem('messagesStatus') === 'true'
-            this.message = JSON.parse(localStorage.getItem('messagesArray'))
+            this.messages = JSON.parse(localStorage.getItem('messagesArray'))
         },
         clearMessages(){
             this.status = false

@@ -18,8 +18,6 @@ export const useErrorsStore = defineStore('errorsStore', {
         },
         getData() {
             return {'status': this.status, 'code': this.code, 'errors': this.errors}
-
-
         },
     },
     actions: {

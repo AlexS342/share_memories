@@ -1,7 +1,7 @@
 <script setup>
 import {useErrorsStore} from "@/stores/errors.js"
 const errorsStore = useErrorsStore()
-import {useMessagesStore} from "@/stores/messages.js";
+import {useMessagesStore} from "@/stores/messages.js"
 const messagesStore = useMessagesStore()
 </script>
 
@@ -54,17 +54,21 @@ export default {
     // created() {},
     methods: {
         creat: function (errorsStore, messagesStore){
-            axios.post('/api/album_create', {
+            axios.post('/api/albums/create', {
                 name: this.name,
                 rights: this.rights,
                 description: this.description,
             })
                 .then((response) => {
+                    this.name = ''
+                    this.rights = ''
+                    this.description = ''
+
                     messagesStore.setData(response.data.message)
 
-                    let strErrors = JSON.stringify(response.data.message)
+                    let strMessages = JSON.stringify(response.data.message)
                     localStorage.setItem('messagesStatus', 'true')
-                    localStorage.setItem('messagesArray', strErrors)
+                    localStorage.setItem('messagesArray', strMessages)
                 })
                 .catch((errors) => {
 
