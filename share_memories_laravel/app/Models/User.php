@@ -17,6 +17,11 @@ class User extends Authenticatable
         return $this->hasMany(Album::class);
     }
 
+    public function file(): HasMany
+    {
+        return $this->hasMany(File::class);
+    }
+
     protected $dateFormat = 'U';
 
     protected $attributes = [

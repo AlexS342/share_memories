@@ -30,6 +30,12 @@ return new class extends Migration
                 ->references('id')
                 ->on('albums')->cascadeOnDelete();
         });
+
+        Schema::table('albums', function (Blueprint $table) {
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')->cascadeOnDelete();
+        });
     }
 
     /**

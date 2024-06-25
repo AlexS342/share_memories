@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AlbumsController extends Controller
 {
-    public function get()
+    public function get(): ?JsonResponse
     {
         if(!Auth::check()){
             return null;
@@ -25,11 +25,15 @@ class AlbumsController extends Controller
             return null;
         }
 
-        $id = Auth::id();
         $data = $request->collect();
 
-        $album = Album::factory()->make([
-            ...$data, 'user_id' => $id
+        $album = new Album([
+            'user_id' => Auth::id(),
+//            'album_id',
+//            'cover',
+            'name' => $data['name'],
+            'description' => $data['description'],
+            'rights' => $data['rights'],
         ]);
 
         $save = $album->save();

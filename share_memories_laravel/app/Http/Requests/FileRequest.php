@@ -6,7 +6,7 @@ use App\Enum\RightsEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class AlbumRequest extends FormRequest
+class FileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +25,10 @@ class AlbumRequest extends FormRequest
     {
         return [
             'album_id' => ['nullable', 'integer', 'numeric', 'min:1'],
-            //TODO дописать правила проверки ссылки на обложку альбома после реализации функционала
-//            'cover' => ['nullable', 'string'],
-            'name' => ['string', 'min:3', 'max:20'],
             'description' => ['nullable', 'string', 'max:300'],
             'rights' => [Rule::enum(RightsEnum::class)],
+            'files' => ['array']
+            //TODO добавить проверку файлов
         ];
     }
 
@@ -38,13 +37,10 @@ class AlbumRequest extends FormRequest
         return [
             'album_id.integer' => 'Параметр "album_id" должен быть числом',
             'album_id.numeric' => 'Параметр "album_id" должен быть числом',
-            'album_id.min' => 'ID альбома не может быть мень 1',
-//            'cover.string' => 'Параметр "cover" должен быть строкой',
-            'name.string' => 'Параметр "name" должен быть строкой',
-            'name.max' => 'Название альбома не может быть больше 20 символов',
             'description.string' => 'Параметр "description" должен быть строкой',
             'description.max' => 'Описание альбома не может быть больше 300 символов',
             'rights' => 'Параметр "rights" несоответствует ожидаемому',
+            'files.array' => 'Ожидается, что файлы должны быть в массиве',
         ];
     }
 }
