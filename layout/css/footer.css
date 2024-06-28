@@ -1,0 +1,43 @@
+.footer{
+    width: 1024px;
+    background-color: #7ec3ff;
+}
+.footerList{
+    display: flex;
+    margin-top: -12px;
+    box-sizing: border-box;
+    padding: 16px 16px 4px 16px ;
+}
+.footerList__item{
+    padding: 6px 12px;
+    position: relative;
+}
+.footerList__itemLink{
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    /* color: #676767; */
+    animation: footerTextViewNo  500ms 1 ease-in-out forwards;
+}
+.footerList__itemLink:hover{
+    animation: footerTextViewYes  500ms 1 ease-in-out forwards;
+}
+
+@keyframes footerTextViewYes {
+    from {
+        color: #676767;
+    }
+    to {
+        color: #CCC;
+    }
+}
+@keyframes footerTextViewNo {
+    from {
+        color: #CCC;
+    }
+    to {
+        color: #676767;
+    }
+}
+

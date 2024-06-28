@@ -1,0 +1,28 @@
+.filesActions{
+    width: 1024px;
+    display: flex;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    padding: 6px 24px;
+}
+.filesActions__list{
+    display: flex;
+    flex-wrap: nowrap;
+}
+.filesActions__listItem{
+    display: flex;
+    flex-wrap: nowrap;
+    margin-right: 12px;
+    cursor: pointer;
+}
+.filesActions__list:last-child{
+    margin-right: 0;
+}
+.filesActions__listItemImg{
+    width: 16px;
+    margin-right: 3px;
+}
+.filesActions__listItemName{
+    font-size: 14px;
+    font-weight: 300;
+}

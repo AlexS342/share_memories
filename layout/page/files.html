@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/alert.css">
+    <link rel="stylesheet" href="../css/filesActions.css">
+    <link rel="stylesheet" href="../css/filesAlbums.css">
+    <link rel="stylesheet" href="../css/filesContent.css">
+    <link rel="stylesheet" href="../css/filesPagination.css">
+    <link rel="stylesheet" href="../css/footer.css">
+
+    <title>Share memory</title>
+</head>
+<body>
+    <div class="mainWRP">
+        <header class="header">
+            <div class="headerLogo">
+                <div class="headerLogo_logo">
+                    <img class="headerLogo__logoImg" src="../img/icons/logo.svg" alt="">
+                    <p class="headerLogo__logoName">share memory</p>
+                </div>
+                <p class="headerLogo__text">Делитесь воспоминаниями с&nbsp;друзьями</p>
+            </div>
+
+            <div class="headerInfo">
+                <h1 class="headerInfo__header">Делитесь воспоминаниями</h1>
+                <ol class="headerInfo__list">
+                    <li class="headerInfo__listItem">
+                        <div class="headerInfo__listItemImgWRP">
+                            <svg class="headerInfo__listItemImg" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="m10 3.5c0-.39782.158-.77936.4393-1.06066s.6629-.43934 1.0607-.43934.7794.15804 1.0607.43934.4393.66284.4393 1.06066v.5c0 .26522.1054.51957.2929.70711.1875.18753.4419.29289.7071.29289h3c.2652 0 .5196.10536.7071.29289.1875.18754.2929.44189.2929.70711v3c0 .26522-.1054.51957-.2929.70711-.1875.18753-.4419.29289-.7071.29289h-.5c-.3978 0-.7794.158-1.0607.4393s-.4393.6629-.4393 1.0607.158.7794.4393 1.0607.6629.4393 1.0607.4393h.5c.2652 0 .5196.1054.7071.2929s.2929.4419.2929.7071v3c0 .2652-.1054.5196-.2929.7071s-.4419.2929-.7071.2929h-3c-.2652 0-.5196-.1054-.7071-.2929s-.2929-.4419-.2929-.7071v-.5c0-.3978-.158-.7794-.4393-1.0607s-.6629-.4393-1.0607-.4393-.7794.158-1.0607.4393-.4393.6629-.4393 1.0607v.5c0 .2652-.10536.5196-.29289.7071-.18754.1875-.44189.2929-.70711.2929h-3c-.26522 0-.51957-.1054-.70711-.2929-.18753-.1875-.29289-.4419-.29289-.7071v-3c0-.2652-.10536-.5196-.29289-.7071-.18754-.1875-.44189-.2929-.70711-.2929h-.5c-.39782 0-.77936-.158-1.06066-.4393s-.43934-.6629-.43934-1.0607.15804-.7794.43934-1.0607.66284-.4393 1.06066-.4393h.5c.26522 0 .51957-.10536.70711-.29289.18753-.18754.29289-.44189.29289-.70711v-3c0-.26522.10536-.51957.29289-.70711.18754-.18753.44189-.29289.70711-.29289h3c.26522 0 .51957-.10536.70711-.29289.18753-.18754.29289-.44189.29289-.70711z"/>
+                            </svg>
+                        </div>
+                        <p class="headerInfo__listItemText">
+                            Нужно перечислить главные цели и преимущества проекта в сжатом формате, но понятном пользователю и не забыть упомянуть о преимуществах.
+                        </p>
+                    </li>
+                    <li class="headerInfo__listItem">
+                        <div class="headerInfo__listItemImgWRP">
+                            <svg class="headerInfo__listItemImg" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="m10 3.5c0-.39782.158-.77936.4393-1.06066s.6629-.43934 1.0607-.43934.7794.15804 1.0607.43934.4393.66284.4393 1.06066v.5c0 .26522.1054.51957.2929.70711.1875.18753.4419.29289.7071.29289h3c.2652 0 .5196.10536.7071.29289.1875.18754.2929.44189.2929.70711v3c0 .26522-.1054.51957-.2929.70711-.1875.18753-.4419.29289-.7071.29289h-.5c-.3978 0-.7794.158-1.0607.4393s-.4393.6629-.4393 1.0607.158.7794.4393 1.0607.6629.4393 1.0607.4393h.5c.2652 0 .5196.1054.7071.2929s.2929.4419.2929.7071v3c0 .2652-.1054.5196-.2929.7071s-.4419.2929-.7071.2929h-3c-.2652 0-.5196-.1054-.7071-.2929s-.2929-.4419-.2929-.7071v-.5c0-.3978-.158-.7794-.4393-1.0607s-.6629-.4393-1.0607-.4393-.7794.158-1.0607.4393-.4393.6629-.4393 1.0607v.5c0 .2652-.10536.5196-.29289.7071-.18754.1875-.44189.2929-.70711.2929h-3c-.26522 0-.51957-.1054-.70711-.2929-.18753-.1875-.29289-.4419-.29289-.7071v-3c0-.2652-.10536-.5196-.29289-.7071-.18754-.1875-.44189-.2929-.70711-.2929h-.5c-.39782 0-.77936-.158-1.06066-.4393s-.43934-.6629-.43934-1.0607.15804-.7794.43934-1.0607.66284-.4393 1.06066-.4393h.5c.26522 0 .51957-.10536.70711-.29289.18753-.18754.29289-.44189.29289-.70711v-3c0-.26522.10536-.51957.29289-.70711.18754-.18753.44189-.29289.70711-.29289h3c.26522 0 .51957-.10536.70711-.29289.18753-.18754.29289-.44189.29289-.70711z"/>
+                            </svg>
+                        </div>
+                        <p class="headerInfo__listItemText">
+                            Красиво рассказать о том, что файлы легко сохранить на сервере и они будут доступны пользователю на любом устройстве, а главное в хорошем качестве
+                        </p>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="headerAuth">
+
+                <!-- Если не авторизирован -->
+                <!-- <h5 class="headerAuth__header">Хотите начать?</h5>
+                <div  class="headerAuth__list">
+                    <a href="#" class="headerAuth__listLink">войти</a>
+                    <a href="#" class="headerAuth__listLink">зарегистрироваться</a>
+                </div> -->
+
+                <!-- Если авторизирован -->
+                <a href="#" class="headerAuth__user">
+                    <div class="headerAuth__userAva">
+                    </div>
+                    <p class="headerAuth_userName">Шарадинов Александор Святогорович</p>
+                </a>
+                <div class="headerAuth__action">
+                    <a href="#" class="headerAuth__actionItem">выйти</a>
+                </div>
+            </div>
+        </header>
+        <main>
+            <nav class="nav">
+                <ol class="navList">
+                    <li class="navList__item">
+                        <a class="navList__itemLink" href="#">Главная</a>
+                    </li>
+                    <li class="navList__item">
+                        <a class="navList__itemLink" href="#">Лента</a>
+                    </li>
+                    <li class="navList__item">
+                        <a class="navList__itemLink" href="#">Мои файлы</a>
+                        <ol class="navList__itemList"> 
+                            <li class="navList__itemListItem">
+                                <a class="navList__itemListItemLink" href="#">Море 2017</a>
+                            </li>
+                            <li class="navList__itemListItem">
+                                <a class="navList__itemListItemLink" href="#">Выпускной</a>
+                            </li>
+                            <li class="navList__itemListItem">
+                                <a class="navList__itemListItemLink" href="#">Юбилей клавы</a>
+                            </li>
+                            <li class="navList__itemListItem">
+                                <a class="navList__itemListItemLink" href="#">Личное</a>
+                            </li>
+                        </ol>
+                    </li>
+                    <li class="navList__item">
+                        <a class="navList__itemLink" href="#">Люди</a>
+                        <ol class="navList__itemList">
+                            <li class="navList__itemListItem">
+                                <a class="navList__itemListItemLink" href="#">Друзья</a>
+                            </li>
+                            <li class="navList__itemListItem">
+                                <a class="navList__itemListItemLink" href="#">Подписчики</a>
+                            </li>
+                            <li class="navList__itemListItem">
+                                <a class="navList__itemListItemLink" href="#">Подписки</a>
+                            </li>
+                        </ol>
+                    </li>
+                    <li class="navList__item">
+                        <a class="navList__itemLink" href="#">Статистика</a>
+                        <ol class="navList__itemList"> 
+                            <li class="navList__itemListItem">
+                                <a class="navList__itemListItemLink" href="#">Файлы</a>
+                            </li>
+                            <li class="navList__itemListItem">
+                                <a class="navList__itemListItemLink" href="#">Просмотры</a>
+                            </li>
+                            <li class="navList__itemListItem">
+                                <a class="navList__itemListItemLink" href="#">Комментарии</a>
+                            </li>
+                            <li class="navList__itemListItem">
+                                <a class="navList__itemListItemLink" href="#">Реакции</a>
+                            </li>
+                        </ol>
+                    </li>
+                    <li class="navList__item">
+                        <a class="navList__itemLink" href="#">Профиль</a>
+                        <ol class="navList__itemList"> 
+                            <li class="navList__itemListItem">
+                                <a class="navList__itemListItemLink" href="#">Данные</a>
+                            </li>
+                            <li class="navList__itemListItem">
+                                <a class="navList__itemListItemLink" href="#">Приватность</a>
+                            </li>
+                            <li class="navList__itemListItem">
+                                <a class="navList__itemListItemLink" href="#">Хранилище</a>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </nav>
+
+<!--~~~~~~~~~~~~~~~~~~~~~Alerts~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            <div class="alert danger">
+                <div class="alert__icon">
+                    <img class="alert__iconImg" src="../img/icons/alert/error.svg" alt="">
+                </div>
+                <div class="alert__container">
+                    <h4 class="alert__containerTitle">Error</h4>
+                    <div class="alert__containerRequest">
+                        <span class="alert__containerRequestCode">403</span>
+                        <span class="alert__containerRequestMessage">Access allowed only for registered users</span>
+                    </div>
+                    <div class="alert__containerUser">
+                        <p class="alert__containerUserMessage">Поле "Имя" не может быть короче 3 символов</p>
+                        <p class="alert__containerUserMessage">Вы не указали права на просмотр файла</p>
+                        <p class="alert__containerUserMessage">Прикрепленные файлы недопустимого формата. Разрешена загрузка только "*.jpg"</p>
+                    </div>
+                </div>
+                <div class="alert__action">
+                    <button class="alert__actionButton" type="button">X</button>
+                </div>
+            </div>
+
+            <div class="alert ok">
+                <div class="alert__icon">
+                    <img class="alert__iconImg" src="../img/icons/alert/checked.svg" alt="">
+                </div>
+                <div class="alert__container">
+                    <h4 class="alert__containerTitle">Успех</h4>
+                    <div class="alert__containerRequest">
+                        <span class="alert__containerRequestMessage">Файлы успешно загружены</span>
+                    </div>
+                </div>
+                <div class="alert__action">
+                    <button class="alert__actionButton" type="button">X</button>
+                </div>
+            </div>
+
+            <div class="alert warning">
+                <div class="alert__icon">
+                    <img class="alert__iconImg" src="../img/icons/alert/warning.svg" alt="">
+                </div>
+                <div class="alert__container">
+                    <h4 class="alert__containerTitle">Внимание</h4>
+                    <div class="alert__containerRequest">
+                        <span class="alert__containerRequestMessage">Вы изменили права на просмотр альбома</span>
+                    </div>
+                </div>
+                <div class="alert__action">
+                    <button class="alert__actionButton" type="button">X</button>
+                </div>
+            </div>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+            
+            <div class="filesAlbums">
+                <div class="filesAlbums__header">
+                    <h3 class="filesAlbums__headerName">Ваши альбомы</h3>
+                    <div class="filesAlbums__headerAction">
+                        <div class="filesAlbums__headerActionItem">
+                            <img class="filesAlbums__headerActionItemImg" src="../img/icons/create.svg" alt="">
+                            <span class="filesAlbums__headerActionItemText">Новый альбом</span>
+                            
+<!--~~~~~~~~~~~~Всплывающая форма создания альбома~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<!--                            <div class="filesAlbums__headerActionItemAdd">-->
+<!--                                <div class="filesAlbums__headerActionItemAddWrp">-->
+<!--                                    <h4 class="filesAlbums__headerActionItemAddWrpHeader">Создать новый альбом</h4>-->
+<!--                                    <form action="" class="filesAlbums__headerActionItemAddWrpForm">-->
+<!--                                        <label for="name" class="filesAlbums__headerActionItemAddWrpFormLabel">Название</label>-->
+<!--                                        <input class="filesAlbums__headerActionItemAddWrpFormTextInput" type="text" id="name" name="name">-->
+
+<!--                                        <div class="fileAlbums__headerActionItemAddWrpFormWrp">-->
+<!--                                            <h5 class="filesAlbums__headerActionItemAddWrpFormTitle">Кому буден виден альбом</h5>-->
+<!--                                            <div class="filesAlbums__headerActionItemAddWrpFormWrp">-->
+<!--                                                <input class="filesAlbums__headerActionItemAddWrpFormWrpRadio" type="radio" id="rights11" name="rights" value="1">-->
+<!--                                                <label for="rights11" class="filesAlbums__headerActionItemAddWrpFormWrpName">Все посетителям сайта</label>-->
+<!--                                            </div>-->
+<!--                                            <div class="filesAlbums__headerActionItemAddWrpFormWrp">-->
+<!--                                                <input class="filesAlbums__headerActionItemAddWrpFormWrpRadio" type="radio" id="rights12" name="rights" value="2">-->
+<!--                                                <label for="rights12" class="filesAlbums__headerActionItemAddWrpFormWrpName">Все пользователям сайта</label>-->
+<!--                                            </div>-->
+<!--                                            <div class="filesAlbums__headerActionItemAddWrpFormWrp">-->
+<!--                                                <input class="filesAlbums__headerActionItemAddWrpFormWrpRadio" type="radio" id="rights13" name="rights" value="3">-->
+<!--                                                <label for="rights13" class="filesAlbums__headerActionItemAddWrpFormWrpName">Друзьям и подписчикам</label>-->
+<!--                                            </div>-->
+<!--                                            <div class="filesAlbums__headerActionItemAddWrpFormWrp">-->
+<!--                                                <input class="filesAlbums__headerActionItemAddWrpFormWrpRadio" type="radio" id="rights14" name="rights" value="4">-->
+<!--                                                <label for="rights14" class="filesAlbums__headerActionItemAddWrpFormWrpName">Только друзьям</label>-->
+<!--                                            </div>-->
+<!--                                            <div class="filesAlbums__headerActionItemAddWrpFormWrp">-->
+<!--                                                <input class="filesAlbums__headerActionItemAddWrpFormWrpRadio" type="radio" id="rights15" name="rights" value="5">-->
+<!--                                                <label for="rights15" class="filesAlbums__headerActionItemAddWrpFormWrpName">Только мне</label>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+
+<!--                                        <label class="filesAlbums__headerActionItemAddWrpFormLabel" for="description1">Описание альбома</label>-->
+<!--                                        <textarea class="filesAlbums__headerActionItemAddWrpFormText" name="description" id="description1" rows="5"></textarea>-->
+
+<!--                                        <div class="filesAlbums__headerActionItemAddWrpFormAction">-->
+<!--                                            <button type="button" class="filesAlbums__headerActionItemAddWrpFormActionButton">Отмена</button>-->
+<!--                                            <button type="button" class="filesAlbums__headerActionItemAddWrpFormActionButton">Создать</button>-->
+<!--                                        </div>-->
+<!--                                    </form>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+                        </div>
+                        <div class="filesAlbums__headerActionItem">
+                            <img class="filesAlbums__headerActionItemImg" src="../img/icons/down.svg" alt="">
+                            <span class="filesAlbums__headerActionItemText">показать</span>
+
+<!--~~~~~~~~~~~~Всплывающая форма добавления файлов~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<!--                            <div class="filesAlbums__headerActionItemAdd">-->
+<!--                                <div class="filesAlbums__headerActionItemAddWrp">-->
+<!--                                    <h4 class="filesAlbums__headerActionItemAddWrpHeader">Загрузить файлы</h4>-->
+<!--                                    <form action="" class="filesAlbums__headerActionItemAddWrpForm">-->
+<!--                                        <label for="files" class="filesAlbums__headerActionItemAddWrpFormLabel">Файлы</label>-->
+<!--                                        <input class="filesAlbums__headerActionItemAddWrpFormTextInput" type="file" id="files" name="files[]" multiple>-->
+
+<!--                                        <div class="fileAlbums__headerActionItemAddWrpFormWrp">-->
+<!--                                            <h5 class="filesAlbums__headerActionItemAddWrpFormTitel">Кому будут видны файлы</h5>-->
+<!--                                            <div class="filesAlbums__headerActionItemAddWrpFormWrp">-->
+<!--                                                <input class="filesAlbums__headerActionItemAddWrpFormWrpRadio" type="radio" id="rights21" name="rights" value="1">-->
+<!--                                                <label for="rights21" class="filesAlbums__headerActionItemAddWrpFormWrpName">Все посетителям сайта</label>-->
+<!--                                            </div>-->
+<!--                                            <div class="filesAlbums__headerActionItemAddWrpFormWrp">-->
+<!--                                                <input class="filesAlbums__headerActionItemAddWrpFormWrpRadio" type="radio" id="rights22" name="rights" value="2">-->
+<!--                                                <label for="rights22" class="filesAlbums__headerActionItemAddWrpFormWrpName">Все пользователям сайта</label>-->
+<!--                                            </div>-->
+<!--                                            <div class="filesAlbums__headerActionItemAddWrpFormWrp">-->
+<!--                                                <input class="filesAlbums__headerActionItemAddWrpFormWrpRadio" type="radio" id="rights23" name="rights" value="3">-->
+<!--                                                <label for="rights23" class="filesAlbums__headerActionItemAddWrpFormWrpName">Друзьям и подписчикам</label>-->
+<!--                                            </div>-->
+<!--                                            <div class="filesAlbums__headerActionItemAddWrpFormWrp">-->
+<!--                                                <input class="filesAlbums__headerActionItemAddWrpFormWrpRadio" type="radio" id="rights24" name="rights" value="4">-->
+<!--                                                <label for="rights24" class="filesAlbums__headerActionItemAddWrpFormWrpName">Только друзьям</label>-->
+<!--                                            </div>-->
+<!--                                            <div class="filesAlbums__headerActionItemAddWrpFormWrp">-->
+<!--                                                <input class="filesAlbums__headerActionItemAddWrpFormWrpRadio" type="radio" id="rights25" name="rights" value="5">-->
+<!--                                                <label for="rights25" class="filesAlbums__headerActionItemAddWrpFormWrpName">Только мне</label>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+
+<!--                                        <label class="filesAlbums__headerActionItemAddWrpFormLabel" for="description2">Описание файлов (для всех сразу)</label>-->
+<!--                                        <textarea class="filesAlbums__headerActionItemAddWrpFormText" name="description" id="description2" rows="5"></textarea>-->
+<!--                                    -->
+<!--                                        <div class="filesAlbums__headerActionItemAddWrpFormAction">-->
+<!--                                            <button type="button" class="filesAlbums__headerActionItemAddWrpFormActionButton">Отмена</button>-->
+<!--                                            <button type="button" class="filesAlbums__headerActionItemAddWrpFormActionButton">Создать</button>-->
+<!--                                        </div>-->
+<!--                                    </form>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+                        </div>
+                    </div>
+                </div>
+                
+                <ol class="filesAlbums__list">
+                    <li class="filesAlbums__listItem">
+                        <a class="filesAlbums__listItemLink" href="#">Все фото</a>
+                    </li>
+                    <li class="filesAlbums__listItem">
+                        <a class="filesAlbums__listItemLink" href="#">лето 2018</a>
+                    </li>
+                    <li class="filesAlbums__listItem">
+                        <a class="filesAlbums__listItemLink" href="#">Выпускной</a>
+                    </li>
+                    <li class="filesAlbums__listItem">
+                        <a class="filesAlbums__listItemLink" href="#">Армия</a>
+                    </li>
+                    <li class="filesAlbums__listItem">
+                        <a class="filesAlbums__listItemLink" href="#">Море 2020</a>
+                    </li>
+                    <li class="filesAlbums__listItem">
+                        <a class="filesAlbums__listItemLink" href="#">Теплоход 2017</a>
+                    </li>
+                    <li class="filesAlbums__listItem">
+                        <a class="filesAlbums__listItemLink" href="#">Юбилей Юли 30 лет</a>
+                    </li>
+                    <li class="filesAlbums__listItem">
+                       <a class="filesAlbums__listItemLink" href="#">День города 2023</a>
+                    </li>
+                    <li class="filesAlbums__listItem">
+                        <a class="filesAlbums__listItemLink" href="#">лето 2018</a>
+                    </li>
+                    <li class="filesAlbums__listItem">
+                        <a class="filesAlbums__listItemLink" href="#">Выпускной</a>
+                    </li>
+                    <li class="filesAlbums__listItem">
+                        <a class="filesAlbums__listItemLink" href="#">Армия</a>
+                    </li>
+                    <li class="filesAlbums__listItem">
+                        <a class="filesAlbums__listItemLink" href="#">Море 2020</a>
+                    </li>
+                    <li class="filesAlbums__listItem">
+                        <a class="filesAlbums__listItemLink" href="#">Теплоход 2017</a>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="filesContent">
+                <div class="filesContent__header">
+                    <h3 class="filesContent__headerName">Ваши фото: <span>Все фото из всех ваших альбомов, которые вы создали</span></h3>
+                    <div class="filesContent__headerAction">
+                        <div class="filesContent__headerActionItem">
+                            <label class="filesContent__headerActionItemText" for="pagination">на странице</label>
+                            <select class="filesContent__headerActionItemPagination" name="pagination" id="pagination">
+                                <option value="24">24</option>
+                                <option value="36">36</option>
+                                <option value="48">48</option>
+                                <option value="56">56</option>
+                                <option value="64">64</option>
+                            </select>
+                            <span class="filesContent__headerActionItemText">фото</span>
+                        </div>
+                        <div class="filesContent__headerActionItem">
+                            <img class="filesContent__headerActionItemImg" src="../img/icons/download.svg" alt="">
+                            <span class="filesContent__headerActionItemText">Загрузить файлы</span>
+                        </div>
+                        <div class="filesContent__headerActionItem">
+                            <img class="filesContent__headerActionItemImg" src="../img/icons/down.svg" alt="">
+                        <span class="filesContent__headerActionItemText">показать</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <ol class="filesContent__list">
+                    <li class="filesContent__listItem">
+                        <img class="filesContent__listItemImg" src="../img/photo/img1.jpg" alt="">
+                        <div class="filesContent__listItemInfo">
+                            <span class="filesContent__listItemInfoName">Красивая картинка среднего качества, на которой запечетлены высокие, заросшие березами и море</span>
+                        </div>
+                        <div class="filesContent__listItemData">
+                            <span class="filesContent__listItemDataItem">584kB</span>
+                        </div>
+                    </li>
+                    <li class="filesContent__listItem">
+                        <img class="filesContent__listItemImg" src="../img/photo/img2.jpg" alt="">
+                        <div class="filesContent__listItemInfo">
+                            <span class="filesContent__listItemInfoName">Красивая картинка среднего качества, на которой запечетлены высокие, заросшие березами и море</span>
+                        </div>
+                        <div class="filesContent__listItemData">
+                            <span class="filesContent__listItemDataItem">584kB</span>
+                        </div>
+                    </li>
+                    <li class="filesContent__listItem">
+                        <img class="filesContent__listItemImg" src="../img/photo/img3.jpg" alt="">
+                        <div class="filesContent__listItemInfo">
+                            <span class="filesContent__listItemInfoName">Красивая картинка среднего качества, на которой запечетлены высокие, заросшие березами и море</span>
+                        </div>
+                        <div class="filesContent__listItemData">
+                            <span class="filesContent__listItemDataItem">584kB</span>
+                        </div>
+                    </li>
+                    <li class="filesContent__listItem">
+                        <img class="filesContent__listItemImg" src="../img/photo/img11.jpg" alt="">
+                        <div class="filesContent__listItemInfo">
+                            <span class="filesContent__listItemInfoName">Красивая картинка среднего качества, на которой запечетлены высокие, заросшие березами и море</span>
+                        </div>
+                        <div class="filesContent__listItemData">
+                            <span class="filesContent__listItemDataItem">584kB</span>
+                        </div>
+                    </li>
+                    <li class="filesContent__listItem">
+                        <img class="filesContent__listItemImg" src="../img/photo/img12.jpg" alt="">
+                        <div class="filesContent__listItemInfo">
+                            <span class="filesContent__listItemInfoName">Красивая картинка среднего качества, на которой запечетлены высокие, заросшие березами и море</span>
+                        </div>
+                        <div class="filesContent__listItemData">
+                            <span class="filesContent__listItemDataItem">584kB</span>
+                        </div>
+                    </li>
+                    <li class="filesContent__listItem">
+                        <img class="filesContent__listItemImg" src="../img/photo/img13.jpg" alt="">
+                        <div class="filesContent__listItemInfo">
+                            <span class="filesContent__listItemInfoName">Красивая картинка среднего качества, на которой запечетлены высокие, заросшие березами и море</span>
+                        </div>
+                        <div class="filesContent__listItemData">
+                            <span class="filesContent__listItemDataItem">584kB</span>
+                        </div>
+                    </li>
+                    <li class="filesContent__listItem">
+                        <img class="filesContent__listItemImg" src="../img/photo/img21.jpg" alt="">
+                        <div class="filesContent__listItemInfo">
+                            <span class="filesContent__listItemInfoName">Красивая картинка среднего качества, на которой запечетлены высокие, заросшие березами и море</span>
+                        </div>
+                        <div class="filesContent__listItemData">
+                            <span class="filesContent__listItemDataItem">584kB</span>
+                        </div>
+                    </li>
+                    <li class="filesContent__listItem">
+                        <img class="filesContent__listItemImg" src="../img/photo/img22.jpg" alt="">
+                        <div class="filesContent__listItemInfo">
+                            <span class="filesContent__listItemInfoName">Красивая картинка среднего качества, на которой запечетлены высокие, заросшие березами и море</span>
+                        </div>
+                        <div class="filesContent__listItemData">
+                            <span class="filesContent__listItemDataItem">584kB</span>
+                        </div>
+                    </li>
+                    <li class="filesContent__listItem">
+                        <img class="filesContent__listItemImg" src="../img/photo/img23.jpg" alt="">
+                        <div class="filesContent__listItemInfo">
+                            <span class="filesContent__listItemInfoName">Красивая картинка среднего качества, на которой запечетлены высокие, заросшие березами и море</span>
+                        </div>
+                        <div class="filesContent__listItemData">
+                            <span class="filesContent__listItemDataItem">584kB</span>
+                        </div>
+                    </li>
+                    <li class="filesContent__listItem">
+                        <img class="filesContent__listItemImg" src="../img/photo/img31.jpg" alt="">
+                        <div class="filesContent__listItemInfo">
+                            <span class="filesContent__listItemInfoName">Красивая картинка среднего качества, на которой запечетлены высокие, заросшие березами и море</span>
+                        </div>
+                        <div class="filesContent__listItemData">
+                            <span class="filesContent__listItemDataItem">584kB</span>
+                        </div>
+                    </li>
+                    <li class="filesContent__listItem">
+                        <img class="filesContent__listItemImg" src="../img/photo/img32.jpg" alt="">
+                        <div class="filesContent__listItemInfo">
+                            <span class="filesContent__listItemInfoName">Красивая картинка среднего качества, на которой запечетлены высокие, заросшие березами и море</span>
+                        </div>
+                        <div class="filesContent__listItemData">
+                            <span class="filesContent__listItemDataItem">584kB</span>
+                        </div>
+                    </li>
+                    <li class="filesContent__listItem">
+                        <img class="filesContent__listItemImg" src="../img/photo/img33.jpg" alt="">
+                        <div class="filesContent__listItemInfo">
+                            <span class="filesContent__listItemInfoName">Красивая картинка среднего качества, на которой запечетлены высокие, заросшие березами и море</span>
+                        </div>
+                        <div class="filesContent__listItemData">
+                            <span class="filesContent__listItemDataItem">584kB</span>
+                        </div>
+                    </li>
+                    <li class="filesContent__listItem">
+                        <img class="filesContent__listItemImg" src="../img/photo/img41.jpg" alt="">
+                        <div class="filesContent__listItemInfo">
+                            <span class="filesContent__listItemInfoName">Красивая картинка среднего качества, на которой запечетлены высокие, заросшие березами и море</span>
+                        </div>
+                        <div class="filesContent__listItemData">
+                            <span class="filesContent__listItemDataItem">584kB</span>
+                        </div>
+                    </li>
+                    <li class="filesContent__listItem">
+                        <img class="filesContent__listItemImg" src="../img/photo/img42.jpg" alt="">
+                        <div class="filesContent__listItemInfo">
+                            <span class="filesContent__listItemInfoName">Красивая картинка среднего качества, на которой запечетлены высокие, заросшие березами и море</span>
+                        </div>
+                        <div class="filesContent__listItemData">
+                            <span class="filesContent__listItemDataItem">584kB</span>
+                        </div>
+                    </li>
+                    <li class="filesContent__listItem">
+                        <img class="filesContent__listItemImg" src="../img/photo/img43.jpg" alt="">
+                        <div class="filesContent__listItemInfo">
+                            <span class="filesContent__listItemInfoName">Красивая картинка среднего качества, на которой запечетлены высокие, заросшие березами и море</span>
+                        </div>
+                        <div class="filesContent__listItemData">
+                            <span class="filesContent__listItemDataItem">584kB</span>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="filesPagination">
+                <div class="filesPagination__count">
+                    <span class="filesPagination__countText">стр. 2 из 17</span>
+                </div>
+                <ol class="filesPagination__List">
+                    <li class="filesPagination__ListItem">
+                        <a class="filesPagination__ListItemLink" href="#">
+                            <img class="filesPagination__ListItemLinkImg" src="../img/icons/backward.svg" alt="">
+                        </a>
+                    </li>
+                    <li class="filesPagination__ListItem">
+                        <a class="filesPagination__ListItemLink" href="#">1</a>
+                    </li>
+                    <li class="filesPagination__ListItem">
+                        <a class="filesPagination__ListItemLink" href="#">2</a>
+                    </li>
+                    <li class="filesPagination__ListItem">
+                        <a class="filesPagination__ListItemLink" href="#">3</a>
+                    </li>
+                    <li class="filesPagination__ListItem">
+                        <a class="filesPagination__ListItemLink" href="#">4</a>
+                    </li>
+                    <li class="filesPagination__ListItem">
+                        <a class="filesPagination__ListItemLink" href="#">5</a>
+                    </li>
+                    <li class="filesPagination__ListItem">
+                        <a class="filesPagination__ListItemLink" href="#">6</a>
+                    </li>
+                    <li class="filesPagination__ListItem">
+                        <a class="filesPagination__ListItemLink" href="#">7</a>
+                    </li>
+                    <li class="filesPagination__ListItem">
+                        <a class="filesPagination__ListItemLink" href="#">
+                            <img class="filesPagination__ListItemLinkImg" src="../img/icons/forward.svg" alt="">
+                        </a>
+                    </li>
+                </ol>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <ol class="footerList">
+            <li class="footerList__item">
+                <a class="footerList__itemLink" href="#">Главная</a>
+            </li>
+            <li class="footerList__item">
+                <a class="footerList__itemLink" href="#">Лента</a>
+            </li>
+            <li class="footerList__item">
+                <a class="footerList__itemLink" href="#">Хранилище</a>
+            </li>
+            <li class="footerList__item">
+                <a class="footerList__itemLink" href="#">Связи</a>
+            </li>
+            <li class="footerList__item">
+                <a class="footerList__itemLink" href="#">Статистика</a>
+            </li>
+            <li class="footerList__item">
+                <a class="footerList__itemLink" href="#">Профиль</a>
+            </li>
+        </ol>
+    </footer>
+</body>
+</html>

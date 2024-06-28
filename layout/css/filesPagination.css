@@ -1,0 +1,32 @@
+.filesPagination{
+    width: 1024px;
+    box-sizing: border-box;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+}
+.filesPagination__List{
+    display: flex;
+    flex-wrap: nowrap;
+}
+.filesPagination__ListItem{
+    margin: 0 6px;
+}
+.filesPagination__ListItemLink{
+    padding: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    color: rgb(25, 105, 255);
+}
+.filesPagination__ListItemLinkImg{
+    width: 12px;
+}
+.filesPagination__count{
+    box-sizing: border-box;
+    padding: 4px;
+}
+.filesPagination__countText{
+    font-size: 14px;
+    font-weight: 500;
+}

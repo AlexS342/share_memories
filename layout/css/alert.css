@@ -1,0 +1,75 @@
+.alert{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: center;
+}
+.alert__icon{
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.alert__iconImg{
+    width: 36px;
+}
+.alert__containerTitle{
+    width: 600px;
+}
+.alert__containerTitle{
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+.alert__containerRequest{
+    width: 100%;
+    /* margin-bottom: 12px; */
+}
+.alert__containerRequestCode{
+    font-size: 24px;
+    font-weight: 900;
+    margin-right: 24px;
+}
+.alert__containerRequestMessage{
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 12px;
+}
+.alert__containerUser{
+    width: 100%;
+}
+.alert__containerUserMessage{
+    font-size: 14px;
+    font-weight: 300;
+    margin: 6px 0;
+}
+.alert__action{
+    width: 100px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start
+}
+.alert__actionButton{
+    padding: 0px 4px;
+    font-size: 14px;
+    font-weight: 200;
+    text-transform: uppercase;
+    color: rgb(75, 70, 64);
+}
+
+.danger{
+    background-color: #ffd8d8;
+    color: red;
+}
+
+.ok{
+    background-color: #86ff96;
+    color: rgb(0, 128, 6);
+}
+
+.warning{
+    background-color: #fff386;
+    color: rgb(124, 106, 0);
+}

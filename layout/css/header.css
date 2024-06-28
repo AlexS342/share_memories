@@ -1,0 +1,139 @@
+.header{
+    width: 1024px;
+    display: flex;
+    background-color: #bedbff;
+    box-sizing: border-box;
+    padding: 16px 24px;
+    z-index: 1000;
+}
+
+.headerLogo{
+    width: 175px;
+}
+.headerLogo_logo{
+    display: flex;
+}
+.headerLogo__logoImg{
+    width: 50px;
+}
+.headerLogo__logoName{
+    width: 125px;
+    font-size: 28px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.headerLogo__text{
+    text-align: center;
+    font-size: 12px;
+}
+
+.headerInfo{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.headerInfo__header{
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+.headerInfo__list{
+    display: flex;
+    flex-direction: column;
+}
+.headerInfo__listItem{
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.headerInfo__listItem:last-child{
+    margin-bottom: 0;
+}
+.headerInfo__listItemImgWRP{
+    min-width: 16px;
+    min-height: 16px;
+    max-width: 16px;
+    max-height: 16px;
+    margin-right: 6px;
+}
+.headerInfo__listItemImg{
+    width: 16px;
+    height: 16px;
+    fill: #5588f1;
+}
+.headerInfo__listItemText{
+    font-size: 12px;
+    font-weight: 200;
+}
+
+.headerAuth{
+    min-width: 200px;
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.headerAuth__header{
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+.headerAuth__list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.headerAuth__listLink{
+    font-size: 14px;
+    text-decoration: none;
+    margin-bottom: 6px;
+}
+.headerAuth__listLink:last-child{
+    margin-bottom: 0;
+}
+
+.headerAuth__user{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: rgb(52, 52, 52);
+}
+.headerAuth__userAva{
+    min-width: 36px;
+    max-width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-image: url('../img/avatars/ava.jpg');
+    background-size: contain;
+}
+.headerAuth_userName{
+    max-width: 158px;
+    padding-left: 6px;
+    font-size: 14px;
+    text-transform: capitalize;
+
+    margin: 0; /* Убираем внешний отступ */
+    -webkit-line-clamp: 1; /* Число отображаемых строк */
+    display: -webkit-box; /* Включаем флексбоксы */
+    -webkit-box-orient: vertical; /* Вертикальная ориентация */
+    overflow: hidden; /* Обрезаем всё за пределами блока */
+}
+.headerAuth__action{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+.headerAuth__actionItem{
+    margin: 4px;
+    font-size: 12px;
+    text-transform: lowercase;
+    text-decoration: none;
+    color: #2c77ff;
+}

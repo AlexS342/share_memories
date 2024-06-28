@@ -1,0 +1,138 @@
+.filesAlbums{
+    width: 1024px;
+    display: flex;
+    flex-direction: column;
+}
+.filesAlbums__header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 6px 24px;
+    border-top: 1px solid rgb(230, 230, 230);
+    border-bottom: 1px solid rgb(230, 230, 230);
+    background-color: rgb(238, 238, 238);
+    box-shadow: inset -10px 0 20px -5px white;
+}
+.filesAlbums__headerName{
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.filesAlbums__headerAction{
+    display: flex;
+    align-items: center;
+}
+.filesAlbums__headerActionItem{
+    box-sizing: border-box;
+    padding: 3px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.filesAlbums__headerActionItemImg{
+    width: 20px;
+    margin-right: 3px;
+}
+.filesAlbums__headerActionItemText{
+    font-size: 12px;
+    font-weight: 300;
+    text-transform: lowercase;
+    /*margin-bottom: 4px;*/
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.filesAlbums__headerActionItemAdd{
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(59, 167, 255, 0.75);
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.filesAlbums__headerActionItemAddWrp{
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 24px;
+    border: 1px solid rgb(224, 224, 224);
+    border-radius: 6px;
+}
+.filesAlbums__headerActionItemAddWrpHeader{
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 12px;
+}
+.filesAlbums__headerActionItemAddWrpForm{
+    display: flex;
+    flex-direction: column;
+}
+.filesAlbums__headerActionItemAddWrpFormLabel{
+    font-size: 14px;
+    font-weight: 500;
+}
+.filesAlbums__headerActionItemAddWrpFormTextInput{
+    margin-bottom: 12px;
+}
+.fileAlbums__headerActionItemAddWrpFormWrp{
+    margin-bottom: 12px;
+}
+.filesAlbums__headerActionItemAddWrpFormTitle{
+    font-size: 14px;
+    font-weight: 500;
+}
+.filesAlbums__headerActionItemAddWrpFormWrp{
+    width: 100%;
+}
+.filesAlbums__headerActionItemAddWrpFormWrpRadio{
+    margin-right: 6px;
+}
+.filesAlbums__headerActionItemAddWrpFormWrpName{
+    font-size: 14px;
+    font-weight: 300;
+}
+.filesAlbums__headerActionItemAddWrpFormText{
+    font-size: 12px;
+    min-width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 12px;
+}
+.filesAlbums__headerActionItemAddWrpFormAction{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0 12px;
+    margin-bottom: -12px;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.filesAlbums__list{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px 24px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.filesAlbums__listItem{
+    box-sizing: border-box;
+    padding: 3px 12px;
+}
+.filesAlbums__listItemLink{
+    text-decoration: none;
+    color: rgb(125 125 125);
+}
+.filesAlbums__listItemLink:hover{
+    color: rgb(52, 52, 52);
+    text-decoration: underline;
+}

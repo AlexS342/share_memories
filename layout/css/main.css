@@ -1,0 +1,28 @@
+body{
+    width: 1024px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgb(52, 52, 52);
+    background-image: url('../img/back_patern/city-skyscrapers-painted-4.jpg');
+}
+.mainWRP{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+main{
+    background-color: white;
+}
+footer{
+    width: 1024px;
+    box-sizing: border-box;
+    padding: 12px 24px;
+    color: rgb(209, 209, 209);
+    background-color: rgb(77, 77, 77);
+}
