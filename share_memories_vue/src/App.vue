@@ -1,78 +1,92 @@
-<script setup>
-import {RouterView} from 'vue-router';
+<template>
+    <div class="mainWRP">
+        <TheHeader/>
+        <main>
+            <TheMenu/>
+
+            <template v-if="getStatusErr()">
+                <AlertError/>
+            </template>
+            <template v-if="getStatusMessages()">
+                <AlertMessage/>
+            </template>
+
+            <RouterView/>
+        </main>
+    </div>
+    <TheFooter/>
+</template>
+
+<script>
+import AlertMessage from "@/components/AlertMessage.vue";
+import AlertError from "@/components/AlertError.vue";
+import TheHeader from "@/components/TheHeader.vue";
+import TheMenu from "@/components/TheMenu.vue";
+import TheFooter from "@/components/TheFooter.vue";
+
 import axios from "axios";
+
 import {useUserStore} from "@/stores/user.js";
 import {useErrorsStore} from "@/stores/errors.js";
 import {useMessagesStore} from "@/stores/messages.js";
 
-const userStore = useUserStore();
-const errorsStore = useErrorsStore();
-const messagesStore = useMessagesStore();
 
-if (localStorage.getItem('isAuth') === 'true') {
-    userStore.setAuth(true);
-    getDataUser();
-} else {
-    userStore.setAuth(false);
+export default {
+    name: "MainHeader",
+    data() {
+        return {}
+    },
+    components: {
+        AlertMessage,
+        AlertError,
+        TheFooter,
+        TheHeader,
+        TheMenu,
+    },
+    setup() {
+        const userStore = useUserStore();
+        const errorsStore = useErrorsStore();
+        const messagesStore = useMessagesStore();
+        return {userStore, errorsStore, messagesStore}
+    },
+    created() {
+        if (localStorage.getItem('isAuth') === 'true') {
+            this.userStore.setAuth(true);
+            this.getDataUser();
+        } else {
+            this.userStore.setAuth(false);
+        }
+        if (localStorage.getItem('errorsStatus') === 'true') {
+            this.errorsStore.setFromLocalStorage();
+        }
+        if (localStorage.getItem('messagesStatus') === 'true') {
+            this.messagesStore.setFromLocalStorage();
+        }
+    },
+    methods: {
+        getDataUser: async function () {
+            await axios.get('/api/user')
+                .then((response) => {
+                    console.log('APP.JS GET USER OK =>' + response.data.name);
+                    this.userStore.setUser(response.data);
+                })
+                .catch((error) => {
+                    console.log('APP.JS GET USER ERROR => ' + error.message);
+                    if (error.response.status === 401 || error.response.status === 419) {
+                        this.userStore.setAuth(false);
+                        localStorage.setItem('isAuth', 'false')
+                        this.$router.push({path: '/login'})
+                    }
+                })
+        },
+        getStatusMessages: function () {
+            return this.messagesStore.getStatus
+        },
+        getStatusErr: function () {
+            return this.errorsStore.getStatus
+        }
+    },
 }
-async function getDataUser() {
-    await axios.get('/api/user')
-        .then((response) => {
-            console.log('APP.JS GET USER OK =>' + response.data.name);
-            userStore.setUser(response.data);
-        })
-        .catch((error) => {
-            console.log('APP.JS GET USER ERROR => ' + error.message);
-            if(error.response.status === 401 || error.response.status === 419){
-                userStore.setAuth(false);
-                localStorage.setItem('isAuth', 'false')
-                this.$router.push({path: '/login'})
-            }
-        });
-}
-
-if(localStorage.getItem('errorsStatus') === 'true'){
-    errorsStore.setFromLocalStorage();
-}
-function getStatusErr() {
-    return errorsStore.getStatus
-}
-function clearErrors () {
-    errorsStore.clearErrors()
-    localStorage.setItem('errorsStatus', 'false')
-    localStorage.setItem('errorsCode', '0')
-    localStorage.setItem('errorsArray', '[]')
-}
-
-if(localStorage.getItem('messagesStatus') === 'true'){
-    messagesStore.setFromLocalStorage();
-}
-function getStatusMessages() {
-    return messagesStore.getStatus
-}
-function clearMessages () {
-    messagesStore.clearMessages()
-    localStorage.setItem('messagesStatus', 'false')
-    localStorage.setItem('messagesArray', '[]')
-}
-
-</script>
-
-<template>
-    <div v-if="getStatusErr()" style="width: 100%; display: flex; flex-direction: column; align-items: center; background: rgba(255,140,140,0.78); box-sizing: border-box; padding: 12px 24px">
-        <p v-for="(item, index) in errorsStore.getErrors" :key="index" style="color: red; margin-bottom: 12px">{{item}}</p>
-        <input type="button" value="OK" v-on:click="clearErrors">
-    </div>
-    <div v-if="getStatusMessages()" style="width: 100%; display: flex; flex-direction: column; align-items: center; background: rgba(175, 255, 95, 0.75);; box-sizing: border-box; padding: 12px 24px">
-        <p v-for="(item, index) in messagesStore.getMessages" :key="index" style="color: rgb(0 42 105);; margin-bottom: 12px">{{item}}</p>
-        <input type="button" value="OK" v-on:click="clearMessages">
-    </div>
-    <RouterView/>
-</template>
-
-<script>
-
-
 
 </script>
 
