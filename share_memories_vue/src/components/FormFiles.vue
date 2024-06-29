@@ -68,13 +68,18 @@
 import axios from "axios"
 import {useUserStore} from "@/stores/user.js"
 import {useFilesStore} from "@/stores/files.js";
+import {useErrorsStore} from "@/stores/errors.js"
+import {useMessagesStore} from "@/stores/messages.js"
 export default {
     name: "FormFiles",
 
     setup() {
         const userStore = useUserStore()
         const filesStore = useFilesStore()
-        return {userStore, filesStore}
+        const errorsStore = useErrorsStore()
+        const messagesStore = useMessagesStore()
+
+        return {userStore, filesStore, errorsStore, messagesStore}
     },
     data() {
         return {
@@ -130,13 +135,36 @@ export default {
                 .then((response) => {
                     console.log('FormFiles sendData OK => ' + response.status)
                     console.dir(response)
-                    this.filesStore.setShowFormFiles(false)
+
                     //TODO добавить сообщение об успешной загрузке файлов
+
+                    this.messagesStore.setData(response.data.message);
+
+                    let strMessages = JSON.stringify(response.data.message)
+                    localStorage.setItem('messagesStatus', 'true')
+                    localStorage.setItem('messagesArray', strMessages)
+
+                    this.filesStore.setShowFormFiles(false)
                 })
-                .catch((error) => {
-                    console.log(error)
+                .catch((errors) => {
+                    console.log(errors)
                     this.filesStore.setShowFormFiles(false)
                     //TODO добавить сообщение об ошибке при загрузке файлов
+
+                    let arrErr = []
+                    arrErr.push(errors.message)
+
+                    for(let key in errors.response.data.errors){
+                        arrErr.push(... errors.response.data.errors[key])
+                    }
+
+                    let data = {'code': errors.response.status, errors: arrErr}
+                    this.errorsStore.setData(data)
+
+                    let strErrors = JSON.stringify(data.errors)
+                    localStorage.setItem('errorsStatus', 'true')
+                    localStorage.setItem('errorsCode', data.code)
+                    localStorage.setItem('errorsArray', strErrors)
                 })
         },
     },

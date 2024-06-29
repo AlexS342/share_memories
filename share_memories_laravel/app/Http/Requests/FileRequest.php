@@ -24,23 +24,38 @@ class FileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'album_id' => ['nullable', 'integer', 'numeric', 'min:1'],
+            'album_id' => ['required', 'integer', 'numeric', 'min:1'],
             'description' => ['nullable', 'string', 'max:300'],
             'rights' => [Rule::enum(RightsEnum::class)],
-            'files' => ['array']
-            //TODO добавить проверку файлов
+            'files' => ['required', 'array', 'min:1', 'max:10'],
+            'files.*' => [
+                'min:10',
+                'max:512',
+                'mimes:jpeg,jpg,gif,png,webp,tiff,bmp,svg,'
+            ],
         ];
     }
 
     public function messages(): array
     {
         return [
+            'album_id.required' => 'Не указан альбом, в который нужно сохранить файлы',
             'album_id.integer' => 'Параметр "album_id" должен быть числом',
             'album_id.numeric' => 'Параметр "album_id" должен быть числом',
+            'album_id.min' => 'Параметр "album_id" меньше допустимого',
+
             'description.string' => 'Параметр "description" должен быть строкой',
             'description.max' => 'Описание альбома не может быть больше 300 символов',
+
             'rights' => 'Параметр "rights" несоответствует ожидаемому',
+
             'files.array' => 'Ожидается, что файлы должны быть в массиве',
+            'files.min' => 'Не получено ни одного файла',
+            'files.max' => 'Прикреплено слишком много файлов',
+
+            'files.*.min' => 'Размер одного из прикрепленных файлов слишком маленький',
+            'files.*.max' => 'Размер одного из прикрепленных файлов слишком большой',
+            'files.*.mimes' => 'Один из прикрепленных файлов неправильного формата'
         ];
     }
 }

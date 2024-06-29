@@ -12,9 +12,13 @@ class FileController extends Controller
 {
     public function add(FileRequest $request): JsonResponse
     {
+        $responseData = [];
+        $responseData['quantityFiles'] = count($request->file('files'));
+        $responseData['quantityDB'] = 0;
+        $responseData['quantityStore'] = 0;
+
         $data = $request->all();
 
-        $files = [];
         foreach ($request->file('files') as $key => $file)
         {
 //            if(!$file->isValid()){
@@ -33,15 +37,33 @@ class FileController extends Controller
                 'expansion' => explode('/', $file->getClientMimeType())[1],
             ]);
 
-            $fileModel->save();
+            $save = $fileModel->save();
 
-            $files[] = $fileModel;
+            if($save){
+                $responseData['quantityDB']++;
+            }
 
             $path = Storage::putFile('', $file);
 
-            //TODO добавить обработку при сохранении файла и записи в БД
+            if($path){
+                $responseData['quantityStore']++;
+            }
+
+            //TODO добавить обработку ошибок при сохранении файла и записи в БД
 
         }
-        return response()->json($files);
+
+        $arrData = [];
+
+        $arrData['message'][] = 'Получено на сервер ' . $responseData['quantityFiles'] . ' файлов';
+        $arrData['message'][] = 'Записано в базу данных информация о ' . $responseData['quantityDB'] . ' файла';
+        $arrData['message'][] = 'Сохранено в хранилище ' . $responseData['quantityStore'] . ' файлов';
+
+        if($responseData['quantityFiles'] == $responseData['quantityDB'] && $responseData['quantityDB'] == $responseData['quantityStore']){
+            $arrData['result'] = true;
+        }else{
+            $arrData['result'] = false;
+        }
+        return response()->json($arrData);
     }
 }

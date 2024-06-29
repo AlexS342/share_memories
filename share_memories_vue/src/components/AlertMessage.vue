@@ -6,9 +6,9 @@
         <div class="container">
             <h4 class="title">Успех</h4>
             <div class="request">
-                <span class="requestMessage" v-for="(item, index) in messagesStore.getMessages" :key="index">
+                <p class="requestMessage" v-for="(item, index) in messagesStore.getMessages" :key="index">
                     {{ item }}
-                </span>
+                </p>
             </div>
         </div>
         <div class="action">

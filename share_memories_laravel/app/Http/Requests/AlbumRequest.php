@@ -28,7 +28,7 @@ class AlbumRequest extends FormRequest
             //TODO дописать правила проверки ссылки на обложку альбома после реализации функционала
 //            'cover' => ['nullable', 'string'],
             'name' => ['string', 'min:3', 'max:20'],
-            'description' => ['nullable', 'string', 'max:300'],
+            'description' => ['nullable', 'string', 'min:5', 'max:300'],
             'rights' => [Rule::enum(RightsEnum::class)],
         ];
     }
@@ -43,6 +43,7 @@ class AlbumRequest extends FormRequest
             'name.string' => 'Параметр "name" должен быть строкой',
             'name.max' => 'Название альбома не может быть больше 20 символов',
             'description.string' => 'Параметр "description" должен быть строкой',
+            'description.min' => 'Описание альбома не может быть меньше 5 символов',
             'description.max' => 'Описание альбома не может быть больше 300 символов',
             'rights' => 'Параметр "rights" несоответствует ожидаемому',
         ];
